@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Screen Mode</string>
+    <string name="text_landscape">Screen mode is set to landscape</string>
+    <string name="text_portrait">Screen mode is set to portrait</string>
+</resources>
