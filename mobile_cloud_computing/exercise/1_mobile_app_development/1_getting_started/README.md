@@ -4,6 +4,8 @@
 Intellij (or Java? I don't know) uses /tmp for downloading the SDK. The downloaded package is huge. The /tmp, by default, is set to 1/2 of the RAM when the machine is booted. If the size of the /tmp is not enough, move it to other location.
 
 ## How?
+I found the solution from here: https://stackoverflow.com/questions/38057884/tmp-directory-in-linux-android-sdk
+
 1. Download the SDK as usual
 2. Observe the folder name created by the Android Studio. Mine is `PackageOperation01`
 3. Stop the download process since you know it's not gonna make it.
