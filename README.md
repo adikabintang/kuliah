@@ -1,2 +1,4 @@
 # kuliah
-ncrooot
+
+
+Biar ga ilang aja sih.
