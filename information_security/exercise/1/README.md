@@ -1,11 +1,12 @@
 # Notes from the exercise 1
 ## Part A
-...
+ssh cloud-user@infosec1.vikaa.fi -p 32957
 
 ## Part B
 For example:
 
 groupname: project2018
+
 name: alice, bob, carol
 
 ### Create a group (requires sudo)
