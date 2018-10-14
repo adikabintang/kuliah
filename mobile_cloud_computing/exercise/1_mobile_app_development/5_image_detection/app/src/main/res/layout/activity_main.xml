@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnPickPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="PICK PHOTO"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/staticBarcodeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Barcode: "
+        app:layout_constraintBottom_toTopOf="@+id/staticPersonText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/txtBarcode" />
+
+    <TextView
+        android:id="@+id/txtBarcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="no"
+        app:layout_constraintLeft_toRightOf="@+id/staticBarcodeTxt"
+        app:layout_constraintTop_toTopOf="@+id/staticBarcodeTxt" />
+
+    <TextView
+        android:id="@+id/staticPersonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Persons: "
+        app:layout_constraintBottom_toTopOf="@+id/staticSmileTxt"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/staticSmileTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Smile: "
+        app:layout_constraintBottom_toTopOf="@+id/staticEyeTxt"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/staticEyeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Eyes: "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/displayImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPickPhoto"
+        app:layout_constraintBottom_toTopOf="@+id/staticBarcodeTxt"/>
+
+    <TextView
+        android:id="@+id/txtNumPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/staticPersonText"
+        app:layout_constraintTop_toBottomOf="@+id/txtBarcode" />
+
+    <TextView
+        android:id="@+id/txtSmile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="no"
+        app:layout_constraintStart_toEndOf="@+id/staticSmileTxt"
+        app:layout_constraintTop_toBottomOf="@+id/txtNumPeople" />
+
+    <TextView
+        android:id="@+id/txtEyes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="no"
+        app:layout_constraintStart_toEndOf="@+id/staticEyeTxt"
+        app:layout_constraintTop_toBottomOf="@+id/txtSmile" />
+</android.support.constraint.ConstraintLayout>

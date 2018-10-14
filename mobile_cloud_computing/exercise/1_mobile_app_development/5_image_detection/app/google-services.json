@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "622420654294",
+    "firebase_url": "https://image-detection-c54be.firebaseio.com",
+    "project_id": "image-detection-c54be",
+    "storage_bucket": "image-detection-c54be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622420654294:android:9d2085609d9769ad",
+        "android_client_info": {
+          "package_name": "bintang.com.imagedetection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622420654294-obb66mofmi5cc9tp879lpllfqan7k30t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bintang.com.imagedetection",
+            "certificate_hash": "c52eb3e582edaa6b5f7d5b234c74393fcdcd674f"
+          }
+        },
+        {
+          "client_id": "622420654294-j9k1qhv77st3mfqgit5hjqu367r3ukr1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOvXL2LTGABhGpY_E0_MUF_UAXCaeJ-bU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622420654294-j9k1qhv77st3mfqgit5hjqu367r3ukr1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
