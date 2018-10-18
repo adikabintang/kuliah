@@ -1,0 +1,31 @@
+{
+  "name": "exercise",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": ">=1.4.3",
+    "debug": ">=2.6.9",
+    "express": ">=4.16.0",
+    "http-errors": ">=1.6.2",
+    "pug": ">=2.0.3",
+    "bcryptjs": ">=2.4.3",
+    "express-session": ">=1.15.6",
+    "morgan": ">=1.9.0",
+    "connect-mongo": ">=2.0.1",
+    "chai": ">=4.1.2",
+    "chai-http": ">=4.0.0",
+    "superagent": ">=3.8.3",
+    "mongoose": ">=5.1.2",
+    "mocha": ">=5.2.0",
+    "express-validator": ">=5.2.0",
+    "request": ">=2.87.0",
+    "randexp": ">=0.4.9",
+    "shuffle-array": ">=1.0.1",
+    "jsonwebtoken": ">=8.3.0",
+    "node-latex": ">=2.4.4",
+    "download-file": ">=0.1.5"
+  }
+}
