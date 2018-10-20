@@ -1,0 +1,265 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{float}
+\usepackage{multirow}
+%\usepackage{xcolor}
+\usepackage[table,xcdraw]{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Auction Analysis for Resource Trading \\ {\large CS-E4140 - Applications and Services in Internet - Report of Assignment 1 }}
+
+\author{\IEEEauthorblockN{Tran Luong Khiem}
+\IEEEauthorblockA{\textit{Security and Cloud Computing Program, Computer Science} \\
+\textit{Aalto University}\\
+Espoo, Finland \\
+728269 - luong.tran@aalto.fi}
+\and
+\IEEEauthorblockN{Adika Bintang Sulaeman}
+\IEEEauthorblockA{\textit{Security and Cloud Computing Program, Computer Science} \\
+\textit{Aalto University}\\
+Espoo, Finland \\
+728214 - adika.sulaeman@aalto.fi}
+}
+
+\maketitle
+\thispagestyle{plain}
+\pagestyle{plain}
+
+\begin{abstract}
+Online auctions are one of the popular forms of electronic commerce to buy and sell services and goods \cite{akula2004analysis}.
+In this case, the service provided by the seller is a web cache, placed on the base station to bring the files closer to users.
+Thus, the content providers can save delay time of the download time and get revenue out of it.
+In this report, we make the system formulation and analyze the auction model.
+From the simulation, we can create such a fair, efficient, and truthful auction by using a single-item second-price auction model. 
+\end{abstract}
+
+\begin{IEEEkeywords}
+auction models, web cache 
+\end{IEEEkeywords}
+
+\section{Introduction}\label{sec:intro}
+This report aims to make system formulation and analyze the auction of cache segments with the mobile network operator (MNO) as the seller, content providers as the tenants, and mobile units (MU) as the subscribers of tenants. In this auction case, there are four tenants competing for the cache segments with the following number of subscribers:
+
+\begin{table}[htbp]
+	\caption{Table Popularity of Tenants}
+	\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		\rowcolor[HTML]{C0C0C0} 
+		Tenant (\$j) & Popularity ($PT_j$) = number of file demands per user ($d_j$) \\ \hline
+		1            & 4                                                \\ \hline
+		2            & 3                                                \\ \hline
+		3            & 2                                                \\ \hline
+		4            & 1                                                \\ \hline
+	\end{tabular}
+	\end{center}
+\end{table}
+
+Every tenant has five files ($F = 5$), 200 MB for each file ($cf = 200$), to provide for their subscribers. Each of their files has different popularity or download probability.
+\begin{table}[htbp]
+	\caption{Table Download Probability}
+	\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		\rowcolor[HTML]{C0C0C0} 
+		{\color[HTML]{333333} Files $i$} & {\color[HTML]{333333} Download Probability ($p_{Fi}$)} \\ \hline
+		$p_{F1}$                         & 0.35                                                   \\ \hline
+		$p_{F2}$                         & 0.25                                                   \\ \hline
+		$p_{F3}$                         & 0.2                                                    \\ \hline
+		$p_{F4}$                         & 0.15                                                   \\ \hline
+		$p_{F5}$                         & 0.05                                                   \\ \hline
+	\end{tabular}
+	\end{center}
+\end{table}
+rd party ru
+There are several assumptions that are mentioned in the problem statements. First of all, there is a thinning the auction. Moreover, the MNO does not know anything about the popularity of tenants and their number of subscribers. The subscribers of the tenants, MUs, are only subscribed for one tenant. Thus, for example, $MU_1$ is only subscribed to the first tenant $T_1$, and cannot subscribe to another tenant.
+
+This report is done by calculating the formula with Microsoft Excel and Office360. Our approach is to simulate the second-price auction model and analyze the fairness, efficiency, and truthfulness of the given auction scenarios. 
+
+This report is constructed as follows.
+The section \ref{sec:sys-formulation} provides the system formulation.
+We discuss how we formulate the profit for tenants and the MNO.
+The section \ref{sec:simul-analysis} is about simulation and analysis.
+It discusses the simulation scenario and analyzes the fairness, efficiency, and truthfulness of the auction model.
+The last section is the conclusion of this report.
+
+\section{System Formulation}\label{sec:sys-formulation}
+
+\subsection{Formulation for Tenants}
+
+The assumptions made in this report are based on what written on the assignment instruction are and our own assumption as the ones who build and simulate the auction model.
+We are assuming that:
+\begin{enumerate}
+	\item We are using single-item auction model, i.e. there is one segment of the cache sold in each round of the auction.
+	\item As the auctioneer, we want the auction to be truthful. Therefore, the bidding price ($b$) must be equivalent to the valuation ($v$), i.e. $b = v$ \cite{lecture2onapplicationandservices}. Thus, we will use second-price auction.
+\end{enumerate}
+
+To formulate this auction model, we need to find the revenue, cost, and profit for both the MNO as the seller and the content provider as the tenant.
+The revenue of the tenants is defined by the delay saving multiplied by some constant money that we are assuming they will get per second of the delay saving.
+Let us say that the delay that the MUs perceive when downloading a file $x$ ($F_x$) with download probability of $P_{Fx}$ from the backhaul network is 5 seconds ($D_{BN} = 5$) and the delay that the MUs perceive when downloading from the cache is 1 second ($D_{cache} = 1$).
+Then, the formula for the delay saving ($D_{saving}$) for all downloads from all MU ($N_{MU}$) and all demanded files ($d_j$) is: 
+\begin{equation}
+%a+b=\gamma\label{eq}
+D_{saving} = N_{MU} * d_j * P_{Fx} * D_{BN} - N_{MU} * d_j * P_{Fx} * D_{cache} \label{eq}
+\end{equation}
+
+After calculating the delay saving, we need to multiply the delay saving with certain amount of value ($K_{money}$), or money in this case, to get the real revenue. For our convenience, we define $K_{money} = 100$, which means that for each second of delay the tenant can save, they get 100 Euro. We need to define this as we need to define actually how much money that the tenant can get the revenue per one second delay saving. Hence, the total revenue ($r_{tenant}$) generated by placing one file inside a certain cache is:
+\begin{equation}
+r_{tenant_x} = D_{saving} * K_{money} \label{eq}
+\end{equation}
+
+The cost that every tenant should pay is the cost of renting the cache, denoted as $C_{cache-rent}$. The profit for each tenant is defined as the difference between the revenue and the cost, which is written as:
+\begin{equation}
+	profit_{tenant} = r_{tenant} - C_{cache-rent} \label{eq}
+\end{equation}
+
+\subsection{Formulation for MNO}
+The cost of cache installation and service delivery for MNO is $C_I = 1$ per MB. Since each segment is 200 MB, the cost of installation for each segment ($C_{I-cache}$) is 200. The revenue of MNO ($r_{MNO}$) is defined as the rent of the cache paid by the tenants. The profit of the MNO ($profit_{MNO}$) is defined as the difference between the revenue and the cost. We can write the profit as:
+\begin{equation}
+	profit_{MNO} = r{MNO} - C_{I_{cache}} \label{eq}
+\end{equation}     
+
+\subsection{Valuation}
+The valuation, in this case, is the same as the revenue. To make this second-price auction truthful, the valuation is equal to the bidding price, which means for each tenant $x$, $b_x = v_x = r_{tenant_x}$. 
+
+\section{Simulation and Analysis}\label{sec:simul-analysis}
+\subsection{Simulation}
+There are five rounds of the auction. Each round the tenants competing for a single cache segment. Tenants will put the bidding value, and the winner will be the one with the highest bidding price. As in the second-price auction, the winner must pay as much as the second-highest bidding value. 
+\begin{table}[htbp]
+	\caption{Auction Round 1}
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline
+		\rowcolor[HTML]{C0C0C0} 
+		Tenants& $v_x = b_x = r_{tenant_x}$ & Winner               & Profit                & Cost ($C_{cache}$)             \\ \hline
+		T1          & 2240                             &                      &                       &                        \\ \cline{1-2}
+		T2          & 1260                             &                      &                       &                        \\ \cline{1-2}
+		T3          & 560                              &                      &                       &                        \\ \cline{1-2}
+		T4          & 140                              & \multirow{-4}{*}{T1} & \multirow{-4}{*}{980} & \multirow{-4}{*}{1260} \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+	\caption{Auction Round 2}
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline
+		\rowcolor[HTML]{C0C0C0} 
+		Tenants& $v_x = b_x = r_{tenant_x}$ & Winner               & Profit                & Cost ($C_{cache}$)             \\ \hline
+		T1          & 1600                             &                      &                       &                        \\ \cline{1-2}
+		T2          & 1260                             &                      &                       &                        \\ \cline{1-2}
+		T3          & 560                              &                      &                       &                        \\ \cline{1-2}
+		T4          & 140                              & \multirow{-4}{*}{T1} & \multirow{-4}{*}{340} & \multirow{-4}{*}{1260} \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+	\caption{Auction Round 3}
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline
+		\rowcolor[HTML]{C0C0C0} 
+		Tenants& $v_x = b_x = r_{tenant_x}$ & Winner               & Profit                & Cost ($C_{cache}$)             \\ \hline
+		T1          & 1280                             &                      &                       &                        \\ \cline{1-2}
+		T2          & 1260                             &                      &                       &                        \\ \cline{1-2}
+		T3          & 560                              &                      &                       &                        \\ \cline{1-2}
+		T4          & 140                              & \multirow{-4}{*}{T1} & \multirow{-4}{*}{20} & \multirow{-4}{*}{1260} \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+	\caption{Auction Round 4}
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline
+		\rowcolor[HTML]{C0C0C0} 
+		Tenants& $v_x = b_x = r_{tenant_x}$ & Winner               & Profit                & Cost ($C_{cache}$)             \\ \hline
+		T1          & 960                              &                      &                       &                        \\ \cline{1-2}
+		T2          & 1260                             &                      &                       &                        \\ \cline{1-2}
+		T3          & 560                              &                      &                       &                        \\ \cline{1-2}
+		T4          & 140                              & \multirow{-4}{*}{T2} & \multirow{-4}{*}{300} & \multirow{-4}{*}{960} \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+	\caption{Auction Round 5}
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline
+		\rowcolor[HTML]{C0C0C0} 
+		Tenants& $v_x = b_x = r_{tenant_x}$ & Winner               & Profit                & Cost ($C_{cache}$)             \\ \hline
+		T1          & 960                              &                      &                       &                        \\ \cline{1-2}
+		T2          & 900                              &                      &                       &                        \\ \cline{1-2}
+		T3          & 560                              &                      &                       &                        \\ \cline{1-2}
+		T4          & 140                              & \multirow{-4}{*}{T1} & \multirow{-4}{*}{60} & \multirow{-4}{*}{900} \\ \hline
+	\end{tabular}
+\end{table}
+
+From the simulation, we can see that for the round 1, 2, 3, and 5 the tenant $T_1$ wins. Tenant $T_2$ wins for the round 4. The column $Profit$ shows the difference between the revenue and the cost of the winner. The cost is the amount of money that the tenant should pay to the MNO.
+
+The MNO's cost for each cache segment is 200 Euro, since the cost of instalation is $C_I = 1$ per MB. From the simulation, we can sum up the profit for MNO and tenants:
+\begin{enumerate}
+	\item For round 1:
+	\begin{enumerate}
+		\item $profit_{T_1} = r_{T_1} - C_{cache-rent} = 980$
+		\item $r_{MNO} = C_{cache-rent} = 1260$
+		\item $profit_{MNO} = r_{MNO} - C_I = 1260 - 200 = 1060$
+	\end{enumerate}
+	\item For round 2:
+	\begin{enumerate}
+		\item $profit_{T_1} = r_{T_1} - C_{cache-rent} = 340$
+		\item $r_{MNO} = C_{cache-rent} = 1260$
+		\item $profit_{MNO} = r_{MNO} - C_I = 1260 - 200 = 1060$
+	\end{enumerate}
+	\item For round 3:
+	\begin{enumerate}
+		\item $profit_{T_1} = r_{T_1} - C_{cache-rent} = 20$
+		\item $r_{MNO} = C_{cache-rent} = 1260$
+		\item $profit_{MNO} = r_{MNO} - C_I = 1260 - 200 = 1060$
+	\end{enumerate}
+	\item For round 4:\begin{enumerate}
+		\item $profit_{T_1} = r_{T_2} - C_{cache-rent} = 300$
+		\item $r_{MNO} = C_{cache-rent} = 960$
+		\item $profit_{MNO} = r_{MNO} - C_I = 960 - 200 = 720$
+	\end{enumerate}
+	\item For round 5:
+	\begin{enumerate}
+		\item $profit_{T_1} = r_{T_1} - C_{cache-rent} = 60$
+		\item $r_{MNO} = C_{cache-rent} = 900$
+		\item $profit_{MNO} = r_{MNO} - C_I = 900 - 200 = 700$
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Analysis}
+Since the bidding value is equal to prospective revenue that the tenant will get if a certain file is placed on the cache, the bidding value will decrease for the next round if a certain tenant wins the auction in that round.
+This is because the tenant will place the lower popular file on the cache, which has lower valuation.
+Therefore, we can say that the auction system is fair for all tenants, since the winner should lower their bidding value for the next round if that tenant wins.
+
+We can measure how efficient the system is by examining whether the winners get profit if they place their file on the cache that they have bought.
+In this case, no parties lose money in this auction model.
+We have also shown the profit for both the tenants and MNO, which shows no negative profit.
+It means that all parties get profit from this auction model.
+Thus, it meets the efficiency requirements.
+
+Truthfulness for the second-price auction happens when the bidding value is equal to the valuation.
+In this system, the valuation is the prospective revenue of the tenant if a certain file is placed on the cache.
+Since the bidding value is the same as the valuation, we can say this auction model is truthful.
+
+\section{Conclusion}\label{sec:conclusion}
+This report discusses about a simulation of a single-item model with second-price auction.
+The experiment of the simulation focuses on how to make system formulation for the revenue and profit of the tenants and MNO.
+
+From the simulation with this model, we simulate how much the revenue and the profit for tenants and MNO for a particular case.
+Tenant $T_1$ wins most of the auction rounds, which are round 1, 2, 3, and 5.
+Tenant $T_2$ wins round 4. The total profit for $T_1$ is 1400 Euro, for $T_2$ is 300 Euro, and for the MNO is 4600 Euro, assuming that each tenant will get 100 Euro for each second of the delay saving. 
+
+We also examine the efficiency, fairness, and the truthfulness of this auction system.
+Section III analyzes about this issue and we come to a conclusion that this auction system is efficient, fair, and truthful.
+
+\bibliographystyle{IEEEtran}
+\bibliography{bibfile}
+
+\end{document}
