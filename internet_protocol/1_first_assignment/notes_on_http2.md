@@ -113,3 +113,4 @@ The header is compressed with HPACK algorithm. HPACK uses two techniques:
 - Both client and server maintain and update an indexed list of previously seen header fields (shared compression context), which is used as a reference to efficiently encode previously transmitted values.
 
 ![hpack](https://developers.google.com/web/fundamentals/performance/http2/images/header_compression01.svg)
+
