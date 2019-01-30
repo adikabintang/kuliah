@@ -69,3 +69,47 @@ Focus on the first two from the left:
 2. C depends on D. C should receive full available resource. Weight does not matter here since C should be processed after D.
 
 Stream dependencies and weights express a transport reference, not a requirement. Therefore, it does not guarantee the transmission order.
+
+### Flow Control
+Let's begin with "what's TCP flow control".
+#### TCP Flow Control
+TCP flow control ensures that a sender is not overwhelming the receiver. In distributed systems (remember fluentd-elasticsearch, ha?), it's to avoid _back pressure_.
+
+How it works?
+The receiver will advertise its receive window (receive window: the spare room in the receive buffer).
+
+![window](https://www.brianstorti.com/assets/images/tcp-flow-control/rwnd.png)
+Source: [brianstorti.com](https://www.brianstorti.com/tcp-flow-control/)
+
+#### HTTP/2 Flow Control
+HTTP2 provides a set of building blocks to allow client and server to implement their own stream- and connection-level flow control:
+- Flow control is directional. Each receiver may choose to set any window size that it desires for each stream and the entire connection.
+- Flow control is credit-based. Receiver advertises its initial connection and stream flow control window (in bytes), which is reduced whenever the sender emits a DATA frame and incremented via a WINDOW_UPDATE frame sent by the receiver.
+- Flow control cannot be disabled.
+- Flow control is hop-by-hop, not end-to-end.
+
+### Server Push
+HTTP2 server push in one sentence:
+
+> The ability of the server to send multiple responses for a single client request.
+
+![server push](https://developers.google.com/web/fundamentals/performance/http2/images/push01.svg)
+
+Push resources can be:
+- Cached by the client
+- Reused across different pages
+- Multiplexed alongside other resources
+- Prioritized by the server
+- Declined by the client
+
+#### How? PUSH_PROMISE
+All server push streams are initiated via `PUSH_PROMISE` fames, which signal the server's intent to push the described resources to the client. `PUSH_PROMISE` needs to delivered ahead of the response data that requests the pushed resources.
+
+Pushed resources must obey the same-origin policy.
+
+### Header compression
+The header is compressed with HPACK algorithm. HPACK uses two techniques:
+- The transmitted header fields to be encoded via a static Huffman code, which reduces their individual transfer size.
+- Both client and server maintain and update an indexed list of previously seen header fields (shared compression context), which is used as a reference to efficiently encode previously transmitted values.
+
+![hpack](https://developers.google.com/web/fundamentals/performance/http2/images/header_compression01.svg)

@@ -1,0 +1,1 @@
+- Kubelet runs on worker nodes. It is responsible for communicating to kubernetes cluster services/masters.
