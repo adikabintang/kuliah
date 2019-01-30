@@ -18,11 +18,10 @@
 %==========================================================
 
 \begin{abstract}
-  This LaTeX template is used for typesetting
-  the seminar papers for the Seminar in Computer Science.
-
+  Industry 4.0 is expected to be the next generation of industrial phase. Digital twin has an important role in the Industry 4.0. This paper discusses the digital twin in Industry 4.0 context as well as the supporting technologies for digital twin such as Internet of Things (IoT), cloud computing, service models, and containers.
+  
 \vspace{3mm}
-\noindent KEYWORDS: keywords, separated by commas
+\noindent KEYWORDS: Digital Twin, Industrial Internet of Things, Industry 4.0
 
 \end{abstract}
 
@@ -32,154 +31,24 @@
 
 \section{Introduction}
 
-To be added.
+Industry 4.0 is the next generation of the industrial phase. With industry 4.0, it is possible to gather real-time data from the machines that run in industry and process the data into something meaningful and useful. There are three supporting technologies for Industry 4.0: IoT, Cyber-Physical Systems (CPS), and Smart Factories \cite{hermann2016design}. The combination of these technologies build interconnected devices which forms the fundamental of digital twin.
+
+Digital twin models a physical object to a digital representation using real-time data \cite{Cheatshe3:online}. The data is gathered throughout its life-cycle and used as the source to monitor, learning, and enhance decision making. Digital twin enables engineers monitor and understand how the machines behave once it runs on production. Furthermore, engineers can analyze the data and predict the future performance of the machines.
+
+There are some use cases of digital twin for Industry 4.0. Consider a Printed Circuit Board (PCB) printer for electronic manufacturers. The PCB printer must be very precise in their laser cutting movement, since merely one millimeter miss may lead to PCB flaws. Digital twin enables engineers and technicians to monitor and analyze the data to predict the time when the spare parts tear. Another example would be monitoring jet engine of airplanes. By analyzing data gathered in a real-time manner, engineers and technician may predict the failure in the jet systems which will lead to the reduction of airplane incidents. Furthermore, digital twin may give the feedback to the engineers who design the machine to help them realize an agile-like development system.
+
+\subsection{Scope and Goals}
+This paper aims to review the concept of digital twin for Industry 4.0 as well as the tools and challenges to implement digital twin. This paper will review the roles of IoT, software technologies such as containers and API, as well as cloud computing in digital twin.
+
+\subsection{Structure}
+The rest of this paper is organized as follows. Section 2 presents the challenges of implementing digital twin for Industry 4.0. Section 3 discusses the roles of IoT, containers, API, and cloud computing for digital twin. Section 4 concludes this review paper.
+ 
 
 
-%============================================================
-
-
-\section{Simple things first}
-
-In this section, we give some simple examples of Latex mark-up.
-Sec.~\ref{sec:emphasis} emphasizes important points and
-Sec.~\ref{sec:math} gives examples of math formulas.
-Finally, \ref{sec:list} demonstrates lists.
-
-
-%------------------------------------------------------------
-
-
-\subsection{Emphasizing text}
-\label{sec:emphasis}
-
-\textit{Italics} is a good way to emphasize printed text. However,
-\textbf{boldface} looks better when converted to HTML.
-
-Paragraphs are separated by an empty line in the Latex source code.
-Latex puts extra space between sentences, which you must suppress
-after a period that does not end a sentence, e.g.\ after this acronym.
-
-Cross-references to figures (Fig.~\ref{fig:mypicture1}), tables
-(Table~\ref{tab:mytable1}), other sections (Sec.~\ref{sec:math})
-are easy to create. 
-
-
-%------------------------------------------------------------
-
-
-\subsection{Mathematics}
-\label{sec:math}
-
-In the mathematics mode, you can have subscripts such as $K_{master}$
-and superscripts like $2^x$. Longer formulas may be put on a separate
-line:
-\[ \emptyset \in \emptyset \; \Rightarrow \; E \neq mc^2. \]
-
-You may also want to number the formulas like Eq.~(\ref{eqn:myequation1})
-below.
-\begin{equation}\label{eqn:myequation1}
-C = E_{K_{public}}(P) = P^e. \hspace{10mm}   P = D_{K_{private}}(C) = C^d.
-\end{equation}
-
-
-
-%------------------------------------------------------------
-
-
-\subsection{Make a list}
-\label{sec:list}
-
-Lists can have either bullets or numbers on them. 
-
-\begin{itemize}
-\item one item
-\item another item, which is an exceptionally long one for an item
-  and consequently continues on the next line.
-\end{itemize}
-
-Lists can have several levels. Item~\ref{kukkuu} below contains
-another list.
-\begin{enumerate}
-\item the fist item \label{kukkuu}
-  \begin{enumerate}
-  \item the first subitem 
-  \item the second subitem
-  \end{enumerate}
-\item the second item
-\end{enumerate}
 
 
 %============================================================
 
-
-\section{More complex stuff}
-
-This section provides examples of more complex things.
-
-
-%------------------------------------------------------------
-
-
-\subsection{Data served on a table}
-
-
-Table~\ref{tab:mytable1} presents some data in tabular form. 
-
-\begin{table}[t!]
-  \begin{center}
-    \begin{tabular}{|l|lr|}
-    \hline
-    Protocol & Year &  RFC \\
-    \hline
-    TCP      & 1981 &  793 \\
-    ISAKMP   & 1998 & 2408 \\
-    Photuris & 1999 & 2522 \\
-    \hline
-    \end{tabular}
-    \caption{A table with some protocols}
-    \label{tab:mytable1}
-  \end{center}
-\end{table}
-
-
-%------------------------------------------------------------
-
-
-\subsection{Adding references}
-\label{sec:references}
-
-Do not forget to give pointers to the literature. If you are listing
-stuff related to your topic, you can give several references once
-\cite{Com00,HTS03,Nik99}. However, usually you should give only one, for example the standard describing the stuff \cite{RFC2408} and if you want to directly use someone else's words, use both quotation marks and refer to the source, for example that ``the developer does not need to know all about the framework to develop a working implementation'' \cite{Suo98}. Remember also to mark references to your pictures if they are not created by your own mind!
-
-If you plan to write with Latex regularly, create your own BibTeX
-database and use BibTeX to typeset the bibliographies automatically.
-In the long run, it will save you a lot of time and effort compared to
-compiling reference lists by hand.
-
-
-%------------------------------------------------------------
-
-
-\subsection{Embedded pictures}
-\label{sec:pictures}
-
-Fig.~\ref{fig:mypicture1} is an embedded picture. The supported formats for pictures
-depend on the actual LaTeX command used. For instance, regular \LaTeX supports
-pictures in EPS (Embedded PostScript) format, while pdf\LaTeX supports PDF (Portable
-Document Format), PNG (Portable Network Graphics) and JPEG (Joint Photographic Experts
-Group). It is recommended to use either EPS or PDF for diagrams as well as for any picture
-which includes vector images.
-
-\begin{figure}[t!]
-  \begin{center}
-    % Note how the file extension has been removed from the filename below
-    % so that the LaTeX command can automatically pick any supported file format
-    \includegraphics[width=.5\textwidth]{figures/sample}
-    \caption{An embedded picture}
-    \label{fig:mypicture1}
-  \end{center}
-\end{figure}
 
 
 %============================================================

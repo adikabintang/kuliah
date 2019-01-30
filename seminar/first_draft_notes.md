@@ -10,7 +10,7 @@ From [GE](https://www.ge.com/digital/applications/digital-twin):
 > Digital twins are software representations of assets and processes that are used to understand, predict, and optimize performance in order to achieve improved business outcomes.  Digital twins consist of three components: a data model, a set of analytics or algorithms, and knowledge.
 
 From [IBM](https://www.ibm.com/blogs/internet-of-things/iot-cheat-sheet-digital-twin/):
-> The digital twin is the virtual representation of a physical object or system across its life-cycle. It uses real-time data and other sources to enable learning, reasoning, and dynamically recalibrating for improved decision making.
+> The digital twin is the virtual representation of a physical object or system across its life-cycle. It uses real-time data and other sources to enable learning, reasoning, and dynamically recalibrating for improved decision making. 
 
 ### Why it is important?
 ...
