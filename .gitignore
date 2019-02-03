@@ -1,5 +1,6 @@
 .idea
 node_modules/
+.vscode/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
