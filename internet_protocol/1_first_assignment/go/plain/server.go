@@ -27,14 +27,13 @@ var bintang *person = &person{
 	Age:  24,
 }
 
-func jsonHandler(w http.ResponseWriter, r *http.Request) {
+func getJsonHandler(w http.ResponseWriter, r *http.Request) {
 	j, _ := json.Marshal(bintang)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(j)
 }
 
 func htmlHandler(w http.ResponseWriter, r *http.Request) {
-	pushNotifDoneUpload(w)
 	fp := path.Join("templates", "index.html")
 	tmpl, err := template.ParseFiles(fp)
 	if err != nil {
@@ -46,16 +45,24 @@ func htmlHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-}
 
-func pushNotifDoneUpload(w http.ResponseWriter) {
-	// fp := path.Join("templates", "notif.js")
 	if pusher, ok := w.(http.Pusher); ok {
 		// push is supported
-		if err := pusher.Push("/templates/notif.js", nil); err != nil {
+		if err := pusher.Push("/templates/app.js", nil); err != nil {
 			log.Printf("Failed to push: %v", err)
 		}
 	}
+}
+
+func postJsonHandler(w http.ResponseWriter, r *http.Request) {
+	decoder := json.NewDecoder(r.Body)
+	var p person
+	err := decoder.Decode(&p)
+	if err != nil {
+		panic(err)
+	}
+	log.Println(p.Name)
+	w.Write([]byte("the name is " + p.Name))
 }
 
 func uploadFileHandler(w http.ResponseWriter, r *http.Request) {
@@ -76,7 +83,6 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer f.Close()
 	io.Copy(f, file)
-	pushNotifDoneUpload(w)
 	w.Write([]byte("success"))
 }
 
@@ -86,7 +92,8 @@ func main() {
 
 	http.Handle("/templates/", http.StripPrefix("/templates/", http.FileServer(http.Dir("templates"))))
 
-	http.HandleFunc("/json", jsonHandler)
+	http.HandleFunc("/getjson", getJsonHandler)
+	http.HandleFunc("/postjson", postJsonHandler)
 	http.HandleFunc("/static", htmlHandler)
 	http.HandleFunc("/upload", uploadFileHandler)
 	server.ListenAndServeTLS("./../data/server.pem", "./../data/server.key")
