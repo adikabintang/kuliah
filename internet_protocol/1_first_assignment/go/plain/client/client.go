@@ -1,6 +1,7 @@
 package main
 
 // https://stackoverflow.com/questions/12122159/how-to-do-a-https-request-with-bad-certificate
+// good example: https://gist.github.com/mattetti/5914158/f4d1393d83ebedc682a3c8e7bdc6b49670083b84
 import (
 	"bytes"
 	"crypto/tls"
@@ -21,54 +22,54 @@ type person struct {
 	Age  int    `json:"age"`
 }
 
-func httpGetJson() {
-	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
-	}
-	client := &http.Client{Transport: tr}
+/*
+wait and read response
+wait until connection finishes
+making sure using the same connection for the next request
+*/
+func printResponse(resp *http.Response) {
+	defer resp.Body.Close()
+	responseBody, _ := ioutil.ReadAll(resp.Body)
+	log.Println(resp.Header)
+	log.Println(resp.StatusCode)
+	log.Println("get: ", (string(responseBody)))
+}
+
+func httpGetJson(client http.Client) {
 	resp, err := client.Get(hostnameDest + "/getjson")
 	if err != nil {
 		panic(err)
 	} else {
 		defer resp.Body.Close()
 		body, _ := ioutil.ReadAll(resp.Body)
-		//fmt.Println("content-type: ", resp.Header)
 		fmt.Println("get: ", (string(body)))
 	}
+
+	printResponse(resp)
 }
 
-func httpPostJson() {
+func httpPostJson(client http.Client) {
 	var landau *person = &person{
 		Name: "Michael",
 		Age:  24,
 	}
 
 	thePerson, _ := json.Marshal(landau)
-	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
-	}
-	client := &http.Client{Transport: tr}
 	resp, err := client.Post(hostnameDest+"/postjson", "application/json", bytes.NewBuffer(thePerson))
 	if err != nil {
 		log.Fatalln(err)
 	}
-	body, _ := ioutil.ReadAll(resp.Body)
-	log.Print("Response POST: " + string(body))
+
+	printResponse(resp)
 }
 
-func httpPostUpload() {
+func httpPostUpload(client http.Client) {
 	filepath := path.Join("files", "picture.png")
-	// open the file
 	picture, err := os.Open(filepath)
 	defer picture.Close()
 	if err != nil {
 		panic(err)
 	}
-
-	// values := map[string]io.Reader{
-	// 	"uploadfile": picture,
-	// 	//"filename": strings.NewReader("hello world!"),
-	// }
 
 	pictureContent, err := ioutil.ReadAll(picture)
 	if err != nil {
@@ -88,9 +89,6 @@ func httpPostUpload() {
 	}
 	part.Write(pictureContent)
 
-	// for key, val := range params {
-	// 	_ = writer.WriteField(key, val)
-	// }
 	err = writer.Close()
 	if err != nil {
 		panic(err)
@@ -98,25 +96,21 @@ func httpPostUpload() {
 
 	request, _ := http.NewRequest("POST", hostnameDest+"/upload", body)
 	request.Header.Add("Content-Type", writer.FormDataContentType())
-	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
-	}
-	client := &http.Client{Transport: tr}
 	resp, err := client.Do(request)
 	if err != nil {
 		panic(err)
 	}
 
-	log.Println(resp.Header)
-	log.Println(resp.StatusCode)
-	defer resp.Body.Close()
-	responseBody, _ := ioutil.ReadAll(resp.Body)
-	//fmt.Println("content-type: ", resp.Header)
-	log.Println("get: ", (string(responseBody)))
+	printResponse(resp)
 }
 
 func main() {
-	//httpGetJson()
-	//httpPostJson()
-	httpPostUpload()
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
+
+	//httpGetJson(*client)
+	httpPostJson(*client)
+	//httpPostUpload(*client)
 }
