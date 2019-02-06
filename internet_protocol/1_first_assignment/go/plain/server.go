@@ -22,23 +22,28 @@ type person struct {
 	Age  int    `json:"age"`
 }
 
-var bintang *person = &person{
-	Name: "Bintang",
-	Age:  24,
-}
-
 func getJsonHandler(w http.ResponseWriter, r *http.Request) {
+	var bintang *person = &person{
+		Name: "Bintang",
+		Age:  24,
+	}
+
 	j, _ := json.Marshal(bintang)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(j)
 }
 
 func htmlHandler(w http.ResponseWriter, r *http.Request) {
-	fp := path.Join("templates", "index.html")
-	tmpl, err := template.ParseFiles(fp)
+	filepath := path.Join("templates", "index.html")
+	tmpl, err := template.ParseFiles(filepath)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
+	}
+
+	var bintang *person = &person{
+		Name: "Bintang",
+		Age:  24,
 	}
 
 	if err := tmpl.Execute(w, bintang); err != nil {
@@ -66,6 +71,7 @@ func postJsonHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func uploadFileHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("incoming HTTP POST upload")
 	const maxUploadSize = 2 * 1024 * 1024 // 8 mb
 	if err := r.ParseMultipartForm(maxUploadSize); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
