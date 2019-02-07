@@ -17,4 +17,10 @@ Use wireshark and other tools needed. Repeat the experiment > 3 times.
 Instructions of how to compare in the experiment:
 - HTTP1.1 vs HTTP2
 or
-- HTTP2 with features enabled/disabled (for example, disabling/enabling multiplexing) 
+- HTTP2 with features enabled/disabled (for example, disabling/enabling multiplexing)
+
+# Notes
+https://jimshaver.net/2015/02/11/decrypting-tls-browser-traffic-with-wireshark-the-easy-way/
+how to get the sslkeylog
+export SSLKEYLOGFILE=$HOME/sslkeylog.log
+then open firefox from the same terminal 
