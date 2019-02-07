@@ -36,7 +36,7 @@ func printResponse(resp *http.Response) {
 }
 
 func httpGetJson(client http.Client) {
-	resp, err := client.Get(hostnameDest + "/getjson")
+	resp, err := client.Get(hostnameDest + "/api/v1/getjson")
 	if err != nil {
 		panic(err)
 	} else {
@@ -50,12 +50,12 @@ func httpGetJson(client http.Client) {
 
 func httpPostJson(client http.Client) {
 	var landau *person = &person{
-		Name: "Michael",
+		Name: "Adika Bintang Sulaeman",
 		Age:  24,
 	}
 
 	thePerson, _ := json.Marshal(landau)
-	resp, err := client.Post(hostnameDest+"/postjson", "application/json", bytes.NewBuffer(thePerson))
+	resp, err := client.Post(hostnameDest+"/api/v1/postjson", "application/json", bytes.NewBuffer(thePerson))
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -94,7 +94,7 @@ func httpPostUpload(client http.Client) {
 		panic(err)
 	}
 
-	request, _ := http.NewRequest("POST", hostnameDest+"/upload", body)
+	request, _ := http.NewRequest("POST", hostnameDest+"/api/v1/upload", body)
 	request.Header.Add("Content-Type", writer.FormDataContentType())
 	resp, err := client.Do(request)
 	if err != nil {
@@ -109,8 +109,23 @@ func main() {
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 	client := &http.Client{Transport: tr}
+	arg := ""
+	if len(os.Args) >= 2 {
+		arg = os.Args[1]
+	}
 
-	//httpGetJson(*client)
-	httpPostJson(*client)
-	//httpPostUpload(*client)
+	if arg == "getjson" {
+		httpGetJson(*client)
+	} else if arg == "postjson" {
+		httpPostJson(*client)
+	} else if arg == "postupload" {
+		httpPostUpload(*client)
+	} else {
+		fmt.Println("how to use:")
+		fmt.Println("go run client.go getjson")
+		fmt.Println("go run client.go postjson")
+		fmt.Println("go run client.go postupload")
+		fmt.Println("----------------------------")
+		fmt.Println("@Adika Bitang Sulaeman, ID 728214, Feb 7 2019")
+	}
 }

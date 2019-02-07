@@ -1,1 +1,1 @@
-alert("push done")
+alert("Hi, welcome/tervetuloa/Välkommen!")

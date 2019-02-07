@@ -17,17 +17,19 @@ import (
 	"text/template"
 )
 
+const apiPathPrefix string = "/api/v1"
+
 type person struct {
 	Name string `json:"name"`
-	Age  int    `json:"age"`
+	Id   string `json:"id"`
+}
+
+var bintang *person = &person{
+	Name: "Adika Bintang Sulaeman",
+	Id:   "728214",
 }
 
 func getJsonHandler(w http.ResponseWriter, r *http.Request) {
-	var bintang *person = &person{
-		Name: "Bintang",
-		Age:  24,
-	}
-
 	j, _ := json.Marshal(bintang)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(j)
@@ -39,11 +41,6 @@ func htmlHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
-	}
-
-	var bintang *person = &person{
-		Name: "Bintang",
-		Age:  24,
 	}
 
 	if err := tmpl.Execute(w, bintang); err != nil {
@@ -79,15 +76,16 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	file, handler, err := r.FormFile("uploadfile")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
 	defer file.Close()
-	f, err := os.OpenFile("./file/"+handler.Filename, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
+
+	f, err := os.OpenFile("./file/"+handler.Filename, os.O_WRONLY|os.O_CREATE, 0666)
 	defer f.Close()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 	io.Copy(f, file)
 	w.Write([]byte("success"))
 }
@@ -98,9 +96,9 @@ func main() {
 
 	http.Handle("/templates/", http.StripPrefix("/templates/", http.FileServer(http.Dir("templates"))))
 
-	http.HandleFunc("/getjson", getJsonHandler)
-	http.HandleFunc("/postjson", postJsonHandler)
-	http.HandleFunc("/static", htmlHandler)
-	http.HandleFunc("/upload", uploadFileHandler)
+	http.HandleFunc(apiPathPrefix+"/getjson", getJsonHandler)
+	http.HandleFunc(apiPathPrefix+"/postjson", postJsonHandler)
+	http.HandleFunc("/", htmlHandler)
+	http.HandleFunc(apiPathPrefix+"/upload", uploadFileHandler)
 	server.ListenAndServeTLS("./../data/server.pem", "./../data/server.key")
 }
