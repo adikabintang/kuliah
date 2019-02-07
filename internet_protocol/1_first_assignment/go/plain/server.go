@@ -92,7 +92,7 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	var server http.Server
-	server.Addr = ":8000"
+	server.Addr = ":443"
 
 	http.Handle("/templates/", http.StripPrefix("/templates/", http.FileServer(http.Dir("templates"))))
 
