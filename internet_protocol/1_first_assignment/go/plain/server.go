@@ -56,6 +56,52 @@ func htmlHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func testingSimplestHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("request to testingSimplest: html + simple css")
+	filepath := path.Join("templates", "simplest", "testing_simplest.html")
+	tmpl, err := template.ParseFiles(filepath)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	if err := tmpl.Execute(w, nil); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	if pusher, ok := w.(http.Pusher); ok {
+		// push is supported
+		if err := pusher.Push("/templates/simplest/testing.css", nil); err != nil {
+			log.Printf("Failed to push: %v", err)
+		}
+	}
+}
+
+func simpleHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("request to simple: html + simple css + bootstrap + image")
+	filepath := path.Join("templates", "simple", "simple.html")
+	tmpl, err := template.ParseFiles(filepath)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	if err := tmpl.Execute(w, nil); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	if pusher, ok := w.(http.Pusher); ok {
+		// push is supported
+		if err := pusher.Push("/templates/simple/simple.css", nil); err != nil {
+			log.Printf("Failed to push: %v", err)
+		} else {
+			pusher.Push("/templates/simple/bootstrap/bootstrap.min.css", nil)
+		}
+	}
+}
+
 func postJsonHandler(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	var p person
@@ -98,7 +144,9 @@ func main() {
 
 	http.HandleFunc(apiPathPrefix+"/getjson", getJsonHandler)
 	http.HandleFunc(apiPathPrefix+"/postjson", postJsonHandler)
-	http.HandleFunc("/", htmlHandler)
+	//http.HandleFunc("/", htmlHandler)
+	http.HandleFunc("/testing/simplest", testingSimplestHandler)
+	http.HandleFunc("/testing/simple", simpleHandler)
 	http.HandleFunc(apiPathPrefix+"/upload", uploadFileHandler)
-	server.ListenAndServeTLS("./../data/server.pem", "./../data/server.key")
+	server.ListenAndServeTLS("./server.pem", "./server.key")
 }

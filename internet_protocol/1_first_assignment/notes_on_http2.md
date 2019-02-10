@@ -1,5 +1,8 @@
 # Understanding HTTP2, The Basics
-This note is taken from here: https://developers.google.com/web/fundamentals/performance/http2/ 
+This note is taken from here:
+- https://developers.google.com/web/fundamentals/performance/http2/ 
+- http://undertow.io/blog/2015/04/27/An-in-depth-overview-of-HTTP2.html
+- https://jakearchibald.com/2017/h2-push-tougher-than-i-thought/
 
 ## Design Goal
 HTTP2 focuses more on performance.
@@ -87,6 +90,12 @@ HTTP2 provides a set of building blocks to allow client and server to implement 
 - Flow control is credit-based. Receiver advertises its initial connection and stream flow control window (in bytes), which is reduced whenever the sender emits a DATA frame and incremented via a WINDOW_UPDATE frame sent by the receiver.
 - Flow control cannot be disabled.
 - Flow control is hop-by-hop, not end-to-end.
+
+```
+If HTTP2 sits on top of TCP, and TCP has TCP flow control, why HTTP2 needs to implement a new one?
+Answer: https://hpbn.co/http2/#flow-control
+HTTP2 streams are multiplexed in a single TCP connection. It makes HTTP2 need to have flow control mechanism in application layer level (we cannot have control of TCP/layer 3 flow control on application layer level) and TCP flow control is not granular enough for HTTP2 frames.
+```
 
 ### Server Push
 HTTP2 server push in one sentence:

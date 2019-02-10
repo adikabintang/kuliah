@@ -23,4 +23,4 @@ or
 https://jimshaver.net/2015/02/11/decrypting-tls-browser-traffic-with-wireshark-the-easy-way/
 how to get the sslkeylog
 export SSLKEYLOGFILE=$HOME/sslkeylog.log
-then open firefox from the same terminal 
+then open firefox/google-chrome from the same terminal 
