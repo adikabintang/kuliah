@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"os"
 	"path"
+	"strconv"
 	"text/template"
 )
 
@@ -98,6 +99,10 @@ func simpleHandler(w http.ResponseWriter, r *http.Request) {
 			log.Printf("Failed to push: %v", err)
 		} else {
 			pusher.Push("/templates/simple/bootstrap/bootstrap.min.css", nil)
+			// /templates/simple/img/1.jpeg
+			for i := 1; i <= 6; i++ {
+				pusher.Push("/templates/simple/img/"+strconv.Itoa(i)+".jpeg", nil)
+			}
 		}
 	}
 }
