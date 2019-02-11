@@ -3,7 +3,8 @@ This note is taken from here:
 - https://developers.google.com/web/fundamentals/performance/http2/ 
 - http://undertow.io/blog/2015/04/27/An-in-depth-overview-of-HTTP2.html
 - https://jakearchibald.com/2017/h2-push-tougher-than-i-thought/
-
+- see on section "Concern about performance": https://medium.com/pyspa/how-to-use-golang-1-8s-http-2-server-push-api-4522a45a2eb9 
+- another load testing tool: https://github.com/tsenart/vegeta how to use it: https://github.com/golang/go/issues/18404
 ## Design Goal
 HTTP2 focuses more on performance.
 
