@@ -2,6 +2,8 @@ package main
 
 // https://stackoverflow.com/questions/12122159/how-to-do-a-https-request-with-bad-certificate
 // good example: https://gist.github.com/mattetti/5914158/f4d1393d83ebedc682a3c8e7bdc6b49670083b84
+// problem with 1.1: https://stackoverflow.com/questions/53367809/how-to-force-client-to-use-http-2-instead-of-falling-back-to-http-1-1
+
 import (
 	"bytes"
 	"crypto/tls"
@@ -13,6 +15,9 @@ import (
 	"net/http"
 	"os"
 	"path"
+	"time"
+
+	"golang.org/x/net/http2"
 )
 
 const hostnameDest string = "https://127.0.0.1:443"
@@ -42,6 +47,22 @@ func httpGetJson(client http.Client) {
 	} else {
 		defer resp.Body.Close()
 		body, _ := ioutil.ReadAll(resp.Body)
+		fmt.Println("get: ", (string(body)))
+	}
+
+	printResponse(resp)
+}
+
+func httpSimplestTest(client http.Client) {
+	timeRequesting := time.Now().UnixNano()
+	resp, err := client.Get(hostnameDest + "/testing/simple")
+	if err != nil {
+		panic(err)
+	} else {
+		defer resp.Body.Close()
+		body, _ := ioutil.ReadAll(resp.Body)
+		loadTime := (time.Now().UnixNano() - timeRequesting) / 1000000 // convert to ms
+		log.Printf("simple test load time: %d\n", loadTime)
 		fmt.Println("get: ", (string(body)))
 	}
 
@@ -105,7 +126,7 @@ func httpPostUpload(client http.Client) {
 }
 
 func main() {
-	tr := &http.Transport{
+	tr := &http2.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 	client := &http.Client{Transport: tr}
@@ -120,8 +141,11 @@ func main() {
 		httpPostJson(*client)
 	} else if arg == "postupload" {
 		httpPostUpload(*client)
+	} else if arg == "simplest" {
+		httpSimplestTest(*client)
 	} else {
 		fmt.Println("how to use:")
+		fmt.Println("go run client.go simplest")
 		fmt.Println("go run client.go getjson")
 		fmt.Println("go run client.go postjson")
 		fmt.Println("go run client.go postupload")

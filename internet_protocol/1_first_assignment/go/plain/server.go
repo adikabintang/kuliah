@@ -31,12 +31,14 @@ var bintang *person = &person{
 }
 
 func getJsonHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("request: %s", r.Proto)
 	j, _ := json.Marshal(bintang)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(j)
 }
 
-func htmlHandler(w http.ResponseWriter, r *http.Request) {
+func uploadPageHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("request: %s", r.Proto)
 	filepath := path.Join("templates", "index.html")
 	tmpl, err := template.ParseFiles(filepath)
 	if err != nil {
@@ -50,7 +52,6 @@ func htmlHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if pusher, ok := w.(http.Pusher); ok {
-		// push is supported
 		if err := pusher.Push("/templates/app.js", nil); err != nil {
 			log.Printf("Failed to push: %v", err)
 		}
@@ -58,6 +59,7 @@ func htmlHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func testingSimplestHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("request: %s", r.Proto)
 	log.Println("request to testingSimplest: html + simple css")
 	filepath := path.Join("templates", "simplest", "testing_simplest.html")
 	tmpl, err := template.ParseFiles(filepath)
@@ -72,7 +74,6 @@ func testingSimplestHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if pusher, ok := w.(http.Pusher); ok {
-		// push is supported
 		if err := pusher.Push("/templates/simplest/testing.css", nil); err != nil {
 			log.Printf("Failed to push: %v", err)
 		}
@@ -80,34 +81,62 @@ func testingSimplestHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func simpleHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("request: %s", r.Proto)
 	log.Println("request to simple: html + simple css + bootstrap + image")
 	filepath := path.Join("templates", "simple", "simple.html")
+
+	type Img struct {
+		Title string
+	}
+
+	const nImages int = 20
+	var d [nImages]Img
+	for i := 1; i <= nImages; i++ {
+		d[i-1] = Img{Title: strconv.Itoa(i)}
+	}
+
+	log.Println("pushing...")
+	if pusher, ok := w.(http.Pusher); ok {
+		log.Println("push is supported")
+
+		if err := pusher.Push("/templates/simple/bootstrap/bootstrap.min.css", nil); err != nil {
+			log.Printf("Failed to push: %v", err)
+		}
+
+		if err := pusher.Push("/templates/simple/simple.css", nil); err != nil {
+			log.Printf("Failed to push: %v", err)
+		}
+
+		for i := 1; i <= nImages; i++ {
+			if err := pusher.Push("/templates/simple/img/"+strconv.Itoa(i)+".jpeg", nil); err != nil {
+				log.Printf("Failed to push: %v", err)
+			}
+		}
+	} else {
+		log.Println("push is not supported")
+	}
+
+	type D struct {
+		Imgs [nImages]Img
+	}
+	data := D{
+		Imgs: d,
+	}
+
 	tmpl, err := template.ParseFiles(filepath)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	if err := tmpl.Execute(w, nil); err != nil {
+	if err := tmpl.Execute(w, data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
-	}
-
-	if pusher, ok := w.(http.Pusher); ok {
-		// push is supported
-		if err := pusher.Push("/templates/simple/simple.css", nil); err != nil {
-			log.Printf("Failed to push: %v", err)
-		} else {
-			pusher.Push("/templates/simple/bootstrap/bootstrap.min.css", nil)
-			// /templates/simple/img/1.jpeg
-			for i := 1; i <= 6; i++ {
-				pusher.Push("/templates/simple/img/"+strconv.Itoa(i)+".jpeg", nil)
-			}
-		}
 	}
 }
 
 func postJsonHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("request: %s", r.Proto)
 	decoder := json.NewDecoder(r.Body)
 	var p person
 	err := decoder.Decode(&p)
@@ -119,6 +148,7 @@ func postJsonHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func uploadFileHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("request: %s", r.Proto)
 	log.Println("incoming HTTP POST upload")
 	const maxUploadSize = 2 * 1024 * 1024 // 8 mb
 	if err := r.ParseMultipartForm(maxUploadSize); err != nil {
@@ -149,7 +179,7 @@ func main() {
 
 	http.HandleFunc(apiPathPrefix+"/getjson", getJsonHandler)
 	http.HandleFunc(apiPathPrefix+"/postjson", postJsonHandler)
-	//http.HandleFunc("/", htmlHandler)
+	http.HandleFunc("/upload_page", uploadPageHandler)
 	http.HandleFunc("/testing/simplest", testingSimplestHandler)
 	http.HandleFunc("/testing/simple", simpleHandler)
 	http.HandleFunc(apiPathPrefix+"/upload", uploadFileHandler)

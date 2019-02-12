@@ -1,6 +1,7 @@
 // sudo ldconfig
 // /usr/local/lib/libnghttp2_asio.so.1.0.0
 // export LD_LIBRARY_PATH=/usr/local/lib/
+// g++ -o client client.cpp -lnghttp2_asio -lboost_system -lssl -lcrypto -lpthread -L/usr/local/lib/
 #include <iostream>
 
 #include <nghttp2/asio_http2_client.h>
@@ -20,7 +21,6 @@ int main(int argc, char *argv[])
     // tls_ctx.set_verify_mode(boost::asio::ssl::verify_peer);
     configure_tls_context(ec, tls);
 
-    // connect to localhost:3000
     session sess(io_service, tls, "127.0.0.1", "443");
 
     sess.on_connect([&sess](tcp::resolver::iterator endpoint_it) {
@@ -38,6 +38,13 @@ int main(int argc, char *argv[])
 
         req->on_push([](const request &push) {
             std::cerr << "push request received!" << std::endl;
+            //std::cout << "asdf: " << push.header() << std::endl;
+            //header_map :: iterator itr;
+            header_map :: const_iterator itr;
+            for (itr = push.header().begin(); itr != push.header().end(); ++itr) { 
+                std::cout  <<  "oi: " << itr->first << std::endl; //<<  '\t' << itr->second << '\n'; 
+            } 
+            
             push.on_response([](const response &res) {
                 std::cerr << "push response received!" << std::endl;
                 res.on_data([](const uint8_t *data, std::size_t len) {
