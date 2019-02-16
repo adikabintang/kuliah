@@ -3,6 +3,7 @@ package main
 // https://stackoverflow.com/questions/12122159/how-to-do-a-https-request-with-bad-certificate
 // good example: https://gist.github.com/mattetti/5914158/f4d1393d83ebedc682a3c8e7bdc6b49670083b84
 // problem with 1.1: https://stackoverflow.com/questions/53367809/how-to-force-client-to-use-http-2-instead-of-falling-back-to-http-1-1
+// go get golang.org/x/net/http2
 
 import (
 	"bytes"

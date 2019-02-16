@@ -21,12 +21,12 @@ int main(int argc, char *argv[])
     // tls_ctx.set_verify_mode(boost::asio::ssl::verify_peer);
     configure_tls_context(ec, tls);
 
-    session sess(io_service, tls, "127.0.0.1", "443");
+    session sess(io_service, tls, "52.169.160.243", "443");
 
     sess.on_connect([&sess](tcp::resolver::iterator endpoint_it) {
         boost::system::error_code ec;
 
-        auto req = sess.submit(ec, "GET", "https://127.0.0.1:443/testing/simple"); // 52.169.160.243 
+        auto req = sess.submit(ec, "GET", "https://52.169.160.243:443/index.html"); // 52.169.160.243 
 
         req->on_response([&sess](const response &res) {
             std::cerr << "response received!" << std::endl;

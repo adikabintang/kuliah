@@ -89,7 +89,7 @@ func simpleHandler(w http.ResponseWriter, r *http.Request) {
 		Title string
 	}
 
-	const nImages int = 20
+	const nImages int = 30
 	var d [nImages]Img
 	for i := 1; i <= nImages; i++ {
 		d[i-1] = Img{Title: strconv.Itoa(i)}
