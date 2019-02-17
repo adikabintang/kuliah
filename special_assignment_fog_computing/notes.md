@@ -35,3 +35,41 @@ on the node:
 ```
 sudo kubeadm reset
 ```
+
+## How to label nodes
+Tutorial: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+
+For example, a node named `blackraspi` is about to be labeled `machinetype=raspi`. Command:
+```
+kubectl label node blackraspi machinetype=raspi
+# to see the labels of the nodes
+kubectl get nodes --show-labels
+```
+
+## Deployment
+Command:
+```
+kubectl create -f deployment.yaml
+```
+### How to set where the pod lands with node label selector:
+Example:
+```yaml
+spec:
+  replicas: ...
+  selector:
+    matchLabels:
+      app: ...
+  template:
+    metadata:
+      labels:
+        app: ...
+    spec:
+      nodeSelector: # see this for node selector
+        machinetype: raspi
+      containers:
+      - name: ...
+        image: ...
+        ports:
+        - containerPort: ...
+```
+
