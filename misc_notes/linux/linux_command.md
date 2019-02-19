@@ -80,6 +80,35 @@ or we can even output to multiple files
 $ ping google.com | tee file.txt another.txt
 ```
 
+## sed
+sed: stream editor for filtering and transforming text. 
+
+Example 1 replacing string, [link](https://unix.stackexchange.com/questions/159367/using-sed-to-find-and-replace):
+```
+sed -i -e 's/before/after/g' hello.txt
+```
+
+## awk
+pattern scanning and processing language. huh?
+
+Example 1, printing column of a text [link](https://www.tutorialspoint.com/awk/awk_basic_examples.htm):
+```
+$ cat file.txt
+1) Amit     Physics   80
+2) Rahul    Maths     90
+
+$ awk '{print $1}' file.txt
+1)
+2)
+
+$ awk '{print $2 " " $4}' file.txt
+Amit 80
+Rahul 90
+
+# print line which has more than 18 chars
+$ awk 'length($0) > 18' file.txt
+```
+
 # Basic Networking
 ## traceroute
 print the route packets trace to network host.
