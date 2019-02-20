@@ -7,3 +7,10 @@ services:
       - "1883:1883"
     volumes: 
       - ./docker_config:/mosquitto/config
+  publisher:
+    build: ./publisher
+  subscriber:
+    build: ./subscriber
+    volumes: 
+      - ./output_db:/sub/output_db
+    
