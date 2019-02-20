@@ -109,6 +109,12 @@ Rahul 90
 $ awk 'length($0) > 18' file.txt
 ```
 
+## cut
+...
+
+## xargs
+...
+
 # Basic Networking
 ## traceroute
 print the route packets trace to network host.
