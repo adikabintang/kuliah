@@ -7,7 +7,7 @@
  
 %=========================================================
 
-\title{Digital Twin for Industrial Edge 4.0: Concepts and Tools}
+\title{Digital Twins for Industrial Edge 4.0: Concepts and Tools}
 
 \author{Adika Bintang Sulaeman% Your first and last name: do _not_ add your student number
 \\\textnormal{\texttt{adika.sulaeman@aalto.fi}}} % Your Aalto e-mail address
@@ -19,7 +19,7 @@
 %==========================================================
 
 \begin{abstract}
-  Industry 4.0 is expected to be the next generation of industrial phase. Digital twin, defined as digital representation of physical objects such as machines, has an important role in the Industry 4.0. This paper discusses the digital twin in Industry 4.0 context as well as the supporting technologies for digital twin such as the Internet of Things (IoT), cloud computing, service models, and containers.
+  Industry 4.0 is expected to be the next big phase in industry. Digital twins, defined as digital representations of physical objects such as machines, have an important role in Industry 4.0. This paper discusses the digital twin in the context of Industry 4.0 as well as the supporting technologies for digital twins such as the Internet of Things (IoT), cloud computing, service models, and containers.
   
 \vspace{3mm}
 \noindent KEYWORDS: Digital Twin, Industrial Internet of Things, Industry 4.0
@@ -32,23 +32,23 @@
 
 \section{Introduction}
 
-Industry 4.0 is the next generation of the industrial phase. With industry 4.0, it is possible to gather real-time data from the machines that run in industry and process the data into something meaningful and useful. Industry 4.0 mainly consists of three supporting technologies: IoT, Cyber-Physical Systems (CPS), and Smart Factories \cite{hermann2016design}. The combination of these technologies builds interconnected devices which form the fundamental of the digital twin.
+Industry 4.0 is the next big phase in industry. With industry 4.0, it is possible to gather real-time data from the machines that run in industry and process the data into something meaningful and useful. Industry 4.0 mainly consists of three supporting technologies: IoT, Cyber-Physical Systems (CPS), and Smart Factories \cite{hermann2016design}. The combination of these technologies builds interconnected devices forming digital twins.
 
-Digital twin models a physical object to a digital representation using real-time data \cite{Cheatshe3:online}. The data is gathered throughout its life-cycle and used as the source to monitor, learning, and enhance decision making. Digital twin enables engineers to monitor and understand how the machines behave once it runs on production. Furthermore, engineers can analyze the data and predict the future performance of the machines.
+A digital twin models a physical object by creating a digital representation using real-time data \cite{Cheatshe3:online}. The data is gathered throughout its life-cycle and used as the source to monitor, learn from, and enhance decision making. A digital twin enables engineers to monitor and understand how the machines behave once it is released and run by users. Furthermore, engineers can analyze the data and predict the future performance of the machines.
 
-There are some use cases of digital twin for Industry 4.0. Consider a Printed Circuit Board (PCB) printer for electronic manufacturers. The PCB printer must be very precise in their laser cutting movement, since merely one-millimeter miss may lead to PCB flaws. Digital twin enables engineers and technicians to monitor and analyze the data to predict the time when the spare parts tear. Another example would be monitoring jet engine of airplanes. By analyzing data gathered in a real-time manner, engineers and technician may predict the failure in the jet systems which will lead to the reduction of airplane incidents. Furthermore, digital twin may give the feedback to the engineers who design the machine to help them realize an agile-like development system.
+There are some use cases of digital twins for Industry 4.0. Consider a Printed Circuit Board (PCB) printer for electronic manufacturers. The PCB printer must be very precise, because the smallest error by the laser cutter may lead to PCB flaws. A digital twin enables engineers and technicians to monitor and analyze the data to predict the time when the spare parts wear out. Another example would be monitoring the jet engine of airplanes. By analyzing data gathered in real-time, engineers and technicians may predict failures in jet systems, which will lead to the reduction of airplane incidents. Furthermore, digital twins may give feedback to the engineers who design the machine to help them realize an agile development system.
 
-The main value that digital twin delivers is understanding product performance \cite{Cheatshe3:online}. By understanding performance, manufacturers may detect and understand faults better, give effective maintenance schedule, troubleshoot machines remotely, and decide appropriate add-on services.
+The main value that the digital twin delivers is an understanding of product performance \cite{Cheatshe3:online}. By understanding performance, manufacturers may detect and understand faults better, create an effective maintenance schedule, troubleshoot machines remotely, and decide appropriate add-on services.
 
-Digital twin has some challenges in its development and implementation. In \cite{bienhaus2017patterns}, the author stated some challenges such as data consistency between the real physical assets and the digital representation, as well as connectivity and security concerns of cloud computing for digital twin. Software architectural aspects such as internal structure, APIs, integration, and runtime environment are also critical challenges for digital twin \cite{malakuti2018architectural}.
+The digital twin has some challenges in its development and implementation. In \cite{bienhaus2017patterns}, the author has stated a number of challenges such as data consistency between the real physical assets and the digital representation, as well as connectivity and security concerns of cloud computing for digital twins. Software architectural aspects such as internal structure, APIs, integration, and runtime environment are also critical challenges for digital twins \cite{malakuti2018architectural}.
 
 \subsection{Scope and Goals}
 \label{sec:emphasis}
-This paper aims to review the concept of digital twin for Industry 4.0 as well as the tools and challenges to implement digital twin. The role of the IoT, software deployment technologies, API, and cloud computing in digital twin will be the main focus of this paper.
+This paper aims to review the concept of digital twins for Industry 4.0 as well as the tools and challenges to implement digital twins. The role of the IoT, software deployment technologies, API, and cloud computing in digital twins will be the main focus of this paper.
 
 \subsection{Structure}
 \label{sec:em}
-The rest of this paper is organized as follows. Section 2 presents the concepts of digital twin for Industry 4.0. Section 3 discusses the tools for digital twin, i.e. the roles of IoT, containers, API, and cloud computing for the digital twin. Section 4 concludes this review paper.
+The rest of this paper is organized as follows. Section 2 presents concept of the digital twin for Industry 4.0. Section 3 discusses the tools for digital twins, i.e. the roles of IoT, containers, API, and cloud computing for the digital twin. Section 4 concludes this review paper.
  
 
 %============================================================
