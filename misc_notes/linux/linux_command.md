@@ -109,6 +109,15 @@ Rahul 90
 $ awk 'length($0) > 18' file.txt
 ```
 
+## read
+read input.
+
+Example:
+```bash
+read varname
+echo "Hello $varname"
+```
+
 ## cut
 ...
 
@@ -142,3 +151,142 @@ Review network connection and open sockets.
 
 ## nmap
 check opened ports. port scanner.
+
+# Loop, Conditional, etc
+## Loops
+Example 1:
+```bash
+for i in {1..4}
+do
+    echo "$i"
+done
+
+# output:
+# 1
+# 2
+# 3
+# 4
+```
+
+Example 2:
+```bash
+for i in {0..4..2}
+do 
+    echo "$i"
+done
+
+# output
+# 0
+# 2
+# 4
+```
+
+Example 3:
+```bash
+for file in server.cpp plain.zip
+do
+	wc $file
+done
+
+# output:
+# 19  49 484 server.cpp
+# 143900   815790 44879792 plain.zip
+```
+
+## Conditional
+Example 1:
+```bash
+var="kancut"
+if [ "$var" = "abc" ]; then
+    echo "true"
+else
+    echo "false"
+fi
+```
+
+Example 2:
+```bash
+x=0
+y=1
+if [ "$x" -eq "$y" ]; then
+    echo "x is equal to y"
+elif [ "$x" -gt "$y" ]; then
+    echo "x is greater than y"
+elif [ "$x" -lt "$y" ]; then
+    echo "x is less than y"
+fi
+
+if [ "$x" -ne "$y" ]; then
+    echo "x is not equal to y"
+fi
+```
+
+Example 3:
+```bash
+name="jeff beck"
+# check if it's an empty string
+if [ -z "$name" ]; then
+    echo "name is an empty string"
+fi
+
+# check if the length is not zero
+if [ "$name" ]; then
+    echo "name's length is NOT zero"
+fi
+```
+
+Example 4:
+```bash
+file_1="server.cpp"
+file_2="one.cpp"
+dir_1="cpp"
+dir_2="catch2"
+
+if [ -f "$file_1" ]; then
+	echo "$file_1 exists"
+fi
+
+if [ -f "$file_2" ]; then
+        echo "$file_2 exists"
+fi
+
+if [ -d "$dir_1" ]; then
+        echo "$dir_1 exists"
+fi
+
+if [ -d "$dir_2" ]; then
+        echo "$dir_2 exists"
+fi
+```
+
+`-f` and `-d` do not work recursively (i.e. they do not look inside other directories).
+
+For other than `-f` and `-d`,  see: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html 
+
+## Arithmethic Operations
+Example:
+```bash
+x=2
+y=9
+echo `expr "$x" + "$y"`
+echo `expr "$x" - "$y"`
+echo `expr "$x" \* "$y"`
+echo `expr "$x" / "$y"`
+```
+
+## Get return status of last executed command
+Syntax: `?`
+
+Example:
+```bash
+ls # assume ls runs successfully 
+echo $? # print 0 (return value of success status)
+```
+
+## to uppercase and to lowercase
+Example:
+```bash
+var="aLaY"
+echo ${var,,} # to lowercase
+echo ${var^^} # to uppercase
+```
