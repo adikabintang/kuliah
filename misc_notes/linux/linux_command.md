@@ -17,7 +17,7 @@
 - [xargs](#xargs)
 - [traceroute](#traceroute)
 - [dig](#dig)
-- [telnet.](#telnet.)
+- [telnet.](#telnet)
 - [netstat](#netstat)
 - [nmap](#nmap)
 - [Loops](#Loops)
@@ -230,7 +230,7 @@ DNS lookup utility. Example:
 $ dig geekflare.com
 ```
 
-## telnet.
+## telnet
 user interface to the TELNET protocol. used to check if the connection is ok. example:
 ```
 telnet geekflare 443
