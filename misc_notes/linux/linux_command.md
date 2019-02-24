@@ -119,7 +119,25 @@ echo "Hello $varname"
 ```
 
 ## cut
-...
+https://www.thegeekstuff.com/2013/06/cut-command-examples/
+
+`cut -c2 test.txt`  print (like `cat`) but only the 2nd character from each line of the test.txt.
+
+`cut -c1-3 test.txt` print character 1 to 3 (like `asu`, 3 character from the first character) from each line of the test.txt.
+
+`cut -c3- test.txt` print from the 3rd character.
+
+`cut -c-8 test.txt` print from the first to the 8th character from each line of the test.txt.
+
+`cut -c- test.txt` same as `cat test.txt`.
+
+`cut -d':' -f1 /etc/passwd`   -d is delimiter, -f is the field. in this case, the output would be something like:
+```
+root
+bin
+sync
+nginx
+```
 
 ## xargs
 ...
