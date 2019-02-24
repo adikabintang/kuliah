@@ -233,4 +233,39 @@ match 1: <div>
 match 2: </div>
 ```
 
+# Advance
+## Boundaries: \b and \B
 
+`\babc\b`   matches a **whole words only**.
+
+The negation of `\b` is `\B`.
+
+`\Babc\B`   matches only if the pattern is **fully surrounded by word** characters.
+
+Example:
+```
+string: ab abc abcc babc
+regex: \babc\b
+match: abc (pos: 3-6)
+
+string: ab abc abcc babcd
+regex: \Babc\B
+match: abc (pos: 13-16, abc in babcd)
+```
+
+## Back-references: \1
+`([abc])\1`  using \1 it matches **the same** text **that was most recently matched by the first capturing group**. [try](https://regex101.com/r/cO8lqs/14)
+
+`([abc])([de])\2\1`   we can use \2 (and \3, \4, etc) to identify **the same** text that **was matched by the second (third, forth, etc) capturing group**. [try](https://regex101.com/r/cO8lqs/15)
+
+`(?<foo>[abc])\k<foo>`  we put the name foo to the group and we reference it later `(\k<foo>)`. The result is the same of the first regex (`([abc])\1`, but here the group has name `foo`). [try](https://regex101.com/r/cO8lqs/16)
+
+## Look-ahead and Look-behind: (?=) and (?<=)
+`d(?=r)`  matches `d` and only if is **followed by r, but r will not be part of the overal regex match**. [try](https://regex101.com/r/cO8lqs/18)
+
+`(?<=r)d`   matches `d` only if **preceded by r, but r will not be part of the overall regex match**. [try](https://regex101.com/r/cO8lqs/19)
+
+**The negation:**
+`d(?!r)`   matches `d` only if not followed by r.
+
+`(?<!r)d`   matches `d` only if it is not preceded by r.
