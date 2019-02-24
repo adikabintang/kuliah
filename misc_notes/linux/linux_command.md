@@ -129,6 +129,8 @@ https://www.thegeekstuff.com/2013/06/cut-command-examples/
 
 `cut -c-8 test.txt` print from the first to the 8th character from each line of the test.txt.
 
+`cut -c2,7 test.txt`  print the 2nd and 7th characters from each line of the test.txt.
+
 `cut -c- test.txt` same as `cat test.txt`.
 
 `cut -d':' -f1 /etc/passwd`   -d is delimiter, -f is the field. in this case, the output would be something like:
