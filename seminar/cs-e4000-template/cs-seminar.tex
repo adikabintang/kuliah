@@ -59,9 +59,21 @@ The rest of this paper is organized as follows. Section 2 presents concept of th
 
 
 \section{Technologies for Digital Twins}
-\subsection{Cloud Technologies for Digital Twins}
-Digital twins may take advantages of cloud technologies. The digital twin can be modeled as a Digital Twin-as-a-Service (DTaaS) \cite{borodulin2017towards}. In DTaaS, the cloud platform has a number of levels of abstractions. The first level is the digital twin users, which perceive the digital twins as a software service. At the level of the digital twin developer, the cloud platform provides the resources for the development of digital twins as a Platform-as-a-Service (PaaS) model. One of the resources needed by the developers is computing services for specific data operation. These computing services are represented as microservices provided by computing service developers. The computing services are run on a containers provided by the cloud infrastructure providers.
+Digital twins may take advantages of cloud technologies. The digital twin can be modeled as a Digital Twin-as-a-Service (DTaaS) \cite{borodulin2017towards}. In DTaaS, the cloud platform has a number of levels of abstractions. The first level is the digital twin users, who perceive the digital twins as a software service. At the level of the digital twin developer, the cloud platform provides the resources for the development of digital twins as a Platform-as-a-Service (PaaS) model. One of the resources needed by the developers is computing services for specific data operation. These computing services are represented as microservices provided by computing service developers. The computing services are run on a containers provided by the cloud infrastructure providers.
 
+Ciavotta et. al. \cite{ciavotta2017microservice} proposed a microservice-based middleware for digital factory with digital interface in it, named MAYA Platform. The digital interface in that digital factory refers to the digital twin. The designed middleware focuses on enabling interoperability between enterprise applications and CPS.
+
+MAYA Platform is a distributed platform consisting of three main components: MAYA Communication Layer (MCL) for aggregation, discovery, orchestration and communication among CPSs; MAYA Support Infrastructure (MSI) for managing the Digital Twins, enabling definition, data processing, and dismissal with miroservice and Big Data technologies; MAYA Simulation Framework (MSF) for simulation and real-to-digital synchronization of the Digital Twins.
+
+The usage scenario of MAYA Platform can be described as the following:
+- New CPS devices are registered manually.
+- The CPS logs in on MSI.
+- MAYA Platform sets up the Digital Twin Functional Model
+- The communication is established between CPS and MSI. The CPS sends data to the platform.
+- The Functional Model creates updates periodically of the corresponding Digital Twin.
+- The MSF performs the simulation by accessing the simulation model of the Digital Twin.
+
+The key focus of the MAYA Platform design is on the MSI. The authors chose microservices because it provides agility, isolation, resilience and elasticity. However, the author also mentioned about the challenges of microservice for this platform, i.e, the difficulties of managing distributed data and the increasing complexity of the software system. Big Data is also part of the MSI. The platform may take benefits of Big Data technologies such as simple but reliable processing, multi-paradigm and general purpose, robust, and scalable.
 
 %============================================================
 
