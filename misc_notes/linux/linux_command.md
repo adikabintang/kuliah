@@ -1,3 +1,31 @@
+# Contents
+- [file](file)
+- [find](find)
+- [locate](locate)
+- [du](du)
+- [df](df)
+- [sort](sort)
+- [wc](wc)
+- [uptime](uptime)
+- [whatis](whatis)
+- [tee](tee)
+- [sed](sed)
+- [awk](awk)
+- [read](read)
+- [cut](cut)
+- [tr](tr)
+- [xargs](xargs)
+- [traceroute](traceroute)
+- [dig](dig)
+- [telnet.](telnet.)
+- [netstat](netstat)
+- [nmap](nmap)
+- [Loops](Loops)
+- [Conditional](Conditional)
+- [Arithmethic](Arithmethic)
+- [Get](Get)
+- [to](to)
+
 # Really Basics
 ## file
 `file` find out type of files.
@@ -139,6 +167,50 @@ root
 bin
 sync
 nginx
+```
+
+## tr
+https://www.geeksforgeeks.org/tr-command-in-unix-linux-with-examples/
+
+tr stands for translage. tr is for translating and deleting characters.
+
+Syntax:
+```
+tr [OPTION] SET1 [SET2]
+
+OPTION:
+-c: complements the set of characters in string
+-d: delete characters in the first set from the output
+-s: replaces repeated characters listed in the SET1 with single occurence
+-t: truncates SET1
+```
+
+Example 1: how to convert lower case to upper case
+```bash
+echo "Budj" | tr "[a-z]" "[A-Z]"
+```
+
+Example 2: translate white-space to tabs
+```bash
+echo "dewa budjana" | tr "[:space:]" '\t'
+```
+
+Example 3: tranlate braces to parenthesis
+```bash
+echo "{dewa} budjana" | tr '{}' '()'
+or
+tr '{}' '()' file.txt
+```
+
+Example 4: delete specified char using -d
+```bash
+echo "hyang giri" | tr -d 'g' # otuput: hyan iri
+echo "dafuq 123" | tr -d "[:digit:]" # output: dafuq
+```
+
+Example 5: complement the sets using -c options
+```bash
+echo "dafuq 123" | tr -cd "[:digit:]" # output: 123
 ```
 
 ## xargs
