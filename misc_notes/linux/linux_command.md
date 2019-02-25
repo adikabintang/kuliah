@@ -78,6 +78,15 @@ b
 a
 ```
 
+For sorting numbers:
+```bash
+$ sort -n file.txt
+1
+1.5
+2
+5
+```
+
 ## wc
 word count
 line counting
