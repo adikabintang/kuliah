@@ -14,10 +14,11 @@
 - [read](#read)
 - [cut](#cut)
 - [tr](#tr)
+- [uniq](#uniq)
 - [xargs](#xargs)
 - [traceroute](#traceroute)
 - [dig](#dig)
-- [telnet.](#telnet)
+- [telnet](#telnet)
 - [netstat](#netstat)
 - [nmap](#nmap)
 - [Loops](#Loops)
@@ -220,6 +221,32 @@ echo "dafuq 123" | tr -d "[:digit:]" # output: dafuq
 Example 5: complement the sets using -c options
 ```bash
 echo "dafuq 123" | tr -cd "[:digit:]" # output: 123
+```
+
+## uniq
+`uniq` = unique.
+
+Examples:
+```bash
+$ cat file.txt
+wanjir
+wanjir
+kancut men
+kancut
+
+$ uniq file.txt
+wanjir
+kancut men
+kancut
+
+$ uniq -c file.txt # it counts the number of repetitions
+2 wanjir
+1 kancut men
+1 kancut
+
+$ uniq -D file.txt # print only duplicate lines
+wanjir
+wanjir
 ```
 
 ## xargs
