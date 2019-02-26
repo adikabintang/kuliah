@@ -2,6 +2,7 @@
 - [file](#file)
 - [find](#find)
 - [locate](#locate)
+- [grep](#grep)
 - [du](#du)
 - [df](#df)
 - [sort](#sort)
@@ -24,6 +25,7 @@
 - [Loops](#Loops)
 - [Conditional](#Conditional)
 - [Arithmethic](#Arithmethic)
+- [Array](#Array)
 - [Get](#Get)
 - [to](#to)
 
@@ -47,6 +49,55 @@ like files, but not search in the filesystem. it looks to updatedb. pros: faster
 example:
 ```
 locate main.c (will look every file containing main.c, like `grep main.c`)
+```
+
+## grep
+https://www.thegeekstuff.com/2009/03/15-practical-unix-grep-command-examples/ 
+
+Examples:
+```bash
+$ cat demo_file
+THIS LINE IS THE 1ST UPPER CASE LINE IN THIS FILE.
+this line is the 1st lower case line in this file.
+This Line Has All Its First Character Of The Word With Upper Case.
+
+Two lines above this line is empty.
+And this is the last line.
+```
+
+```bash
+$ grep "this" demo_file
+this line is the 1st lower case line in this file.
+Two lines above this line is empty.
+And this is the last line.
+```
+
+```bash
+# we make two files first
+$ cp demo_file demo_file1
+$ grep "this" demo_*
+demo_file:this line is the 1st lower case line in this file.
+demo_file:Two lines above this line is empty.
+demo_file:And this is the last line.
+demo_file1:this line is the 1st lower case line in this file.
+demo_file1:Two lines above this line is empty.
+demo_file1:And this is the last line.
+```
+
+```bash
+# case insensitive search, using -i
+$ grep -i "the" defmo_file
+```
+
+```bash
+# match regex
+$ grep "lines.*empty" demo_file
+Two lines above this line is empty.
+```
+
+```bash
+# match exact string, not substring using -w (like ^word$)
+$ grep -w "word" file
 ```
 
 ## du
@@ -375,15 +426,15 @@ if [ -f "$file_1" ]; then
 fi
 
 if [ -f "$file_2" ]; then
-        echo "$file_2 exists"
+    echo "$file_2 exists"
 fi
 
 if [ -d "$dir_1" ]; then
-        echo "$dir_1 exists"
+    echo "$dir_1 exists"
 fi
 
 if [ -d "$dir_2" ]; then
-        echo "$dir_2 exists"
+    echo "$dir_2 exists"
 fi
 ```
 
@@ -400,6 +451,39 @@ echo `expr "$x" + "$y"`
 echo `expr "$x" - "$y"`
 echo `expr "$x" \* "$y"`
 echo `expr "$x" / "$y"`
+
+i=0
+#increment
+((i=i+1))
+```
+
+## Array
+Examples: https://www.thegeekstuff.com/2010/06/bash-array-tutorial/
+
+Example 1:
+```bash
+unix[0]='Debian'
+unix[1]='Fedora'
+
+echo ${unix[1]} # output: Fedora
+```
+
+Example 2: `declare -a` declares an array
+```bash
+declare -a unix=('Debian' 'Fedora')
+
+# print all elements
+echo ${unix[*]}
+
+# print the length of the array
+echo ${#unix[*]}
+
+# print the length of the element located at index 1
+echo ${#unix[1]}
+
+# print subset
+Unix=('Debian' 'Red hat' 'Ubuntu' 'Suse' 'Fedora' 'UTS' 'OpenLinux');
+echo ${Unix[@]:3:2} # output: Suse Fedora
 ```
 
 ## Get return status of last executed command
