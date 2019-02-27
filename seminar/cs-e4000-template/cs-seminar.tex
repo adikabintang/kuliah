@@ -19,7 +19,7 @@
 %==========================================================
 
 \begin{abstract}
-  Industry 4.0 is expected to be the next big phase in industry. Digital twins, defined as digital representations of physical objects such as machines, have an important role in Industry 4.0. This paper discusses the digital twin in the context of Industry 4.0 as well as the supporting technologies for digital twins such as the Internet of Things (IoT), cloud computing, service models, and containers.
+  Industry 4.0 is expected to be the next big phase in industry. Digital twins, defined as digital representations of physical objects such as machines, have an important role in Industry 4.0. This paper discusses the digital twin in the context of Industry 4.0 as well as the supporting technologies for digital twins such as the Internet of Things (IoT), cloud computing, fog and edge computing, as well as the software architecture for digital twins.
   
 \vspace{3mm}
 \noindent KEYWORDS: Digital Twin, Industrial Internet of Things, Industry 4.0
@@ -48,7 +48,7 @@ This paper aims to review the concept of digital twins for Industry 4.0 as well 
 
 \subsection{Structure}
 \label{sec:em}
-The rest of this paper is organized as follows. Section 2 presents concept of the digital twin for Industry 4.0. Section 3 discusses the tools for digital twins, i.e. the roles of IoT, containers, API, and cloud computing for the digital twin. Section 4 concludes this review paper.
+The rest of this paper is organized as follows. Section 2 discusses the tools for digital twins, i.e. the roles of IoT, containers, API, and cloud computing for the digital twin. Section 3 concludes this review paper.
  
 
 %============================================================
@@ -59,19 +59,35 @@ The rest of this paper is organized as follows. Section 2 presents concept of th
 
 
 \section{Technologies for Digital Twins}
-Digital twins may take advantages of cloud technologies. The digital twin can be modeled as a Digital Twin-as-a-Service (DTaaS) \cite{borodulin2017towards}. In DTaaS, the cloud platform has a number of levels of abstractions. The first level is the digital twin users, who perceive the digital twins as a software service. At the level of the digital twin developer, the cloud platform provides the resources for the development of digital twins as a Platform-as-a-Service (PaaS) model. One of the resources needed by the developers is computing services for specific data operation. These computing services are represented as microservices provided by computing service developers. The computing services are run on a containers provided by the cloud infrastructure providers.
+\subsection{Edge Computing, Fog Computing and Cloud Computing Integration for Digital Twins}
+Digital Twins and CPS can be divided into three levels according to location of the services: unit level, system level, and System of System (SoS) level \cite{qi2018modeling}. Unit level is the level where local data processing is done by the CPS. The concept of production line, smart factory, and shop floor lies on system level. SoS level is the level which integrates the different systems from system level. Edge computing, fog computing and cloud computing may help integrate the three levels of Digital Twin Systems.
+
+Edge devices, such as the computing resources of the CPS itself, is the source of data. Those devices may also be able to do computation without having to send the data to remote location to reduce latency. Edge computing operation does not always rely on network connection to operate. Therefore, hard real-time response is possible if the computation is done on the edge.
+
+System level may take benefits of fog computing. Fog computing brings the concept of bringing programs to the data, and not vice versa. Fog computing does the computation and storage to the edge network. In this way, the long latency processing that usually comes with cloud computing can be avoided. Human-machine interface and information management systems such as Customer Relationship Management (CRM) cab be connected to the fog computing. However, the capability of devices in fog computing is limited compared to the cloud computing devices. Therefore, at some point, the processing must be done on cloud platform. 
+
+Cloud platform may help digital twin systems in integrating the systems from the system level. Long-term and massive data storage is handled by cloud computing. It provides architectural flexibility and utilization of external parties to be involved in further value creation.
+
+This system architecture has some challenges that needs to be solved. The number of edge and fog devices deployed must be increased. Furthermore, their processing power and storage capacities must be improved to handle more computation. As the computation is done physically close to the users, the security of this systems also require further research.
+
+\subsection{Cloud Technologies for Digital Twins}
+Digital twins may take advantages of cloud technologies. The digital twin can be modeled as a Digital Twin-as-a-Service (DTaaS) \cite{borodulin2017towards}. In DTaaS, the cloud platform has a number of levels of abstractions. 
+
+The first level is the digital twin users, who perceive the digital twins as a software service. At the level of the digital twin developer, the cloud platform provides the resources for the development of digital twins as a Platform-as-a-Service (PaaS) model. One of the resources needed by the developers is computing services for specific data operation. These computing services are represented as microservices provided by computing service developers. The computing services are run on a containers provided by the cloud infrastructure providers.
 
 Ciavotta et. al. \cite{ciavotta2017microservice} proposed a microservice-based middleware for digital factory with digital interface in it, named MAYA Platform. The digital interface in that digital factory refers to the digital twin. The designed middleware focuses on enabling interoperability between enterprise applications and CPS.
 
 MAYA Platform is a distributed platform consisting of three main components: MAYA Communication Layer (MCL) for aggregation, discovery, orchestration and communication among CPSs; MAYA Support Infrastructure (MSI) for managing the Digital Twins, enabling definition, data processing, and dismissal with miroservice and Big Data technologies; MAYA Simulation Framework (MSF) for simulation and real-to-digital synchronization of the Digital Twins.
 
 The usage scenario of MAYA Platform can be described as the following:
-- New CPS devices are registered manually.
-- The CPS logs in on MSI.
-- MAYA Platform sets up the Digital Twin Functional Model
-- The communication is established between CPS and MSI. The CPS sends data to the platform.
-- The Functional Model creates updates periodically of the corresponding Digital Twin.
-- The MSF performs the simulation by accessing the simulation model of the Digital Twin.
+\begin{itemize}
+	\item New CPS devices are registered manually.
+	\item The CPS logs in on MSI.
+	\item MAYA Platform sets up the Digital Twin Functional Model
+	\item The communication is established between CPS and MSI. The CPS sends data to the platform.
+	\item The Functional Model creates updates periodically of the corresponding Digital Twin.
+	\item The MSF performs the simulation by accessing the simulation model of the Digital Twin.
+\end{itemize}
 
 The key focus of the MAYA Platform design is on the MSI. The authors chose microservices because it provides agility, isolation, resilience and elasticity. However, the author also mentioned about the challenges of microservice for this platform, i.e, the difficulties of managing distributed data and the increasing complexity of the software system. Big Data is also part of the MSI. The platform may take benefits of Big Data technologies such as simple but reliable processing, multi-paradigm and general purpose, robust, and scalable.
 
