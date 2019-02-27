@@ -502,3 +502,19 @@ var="aLaY"
 echo ${var,,} # to lowercase
 echo ${var^^} # to uppercase
 ```
+
+## 2>&1
+https://stackoverflow.com/questions/818255/in-the-shell-what-does-21-mean
+
+https://www.brianstorti.com/understanding-shell-script-idiom-redirect/ 
+
+File descriptor 1 is the `stdout`.
+
+File descriptor 2 is the `stderr`.
+
+`2>&1` means "redirect the `stderr` to the same place we are redirectering the `stdout`".
+
+Example:
+```bash
+$ cat foo.txt > output.txt 2>&1
+```
