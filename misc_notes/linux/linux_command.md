@@ -100,6 +100,23 @@ Two lines above this line is empty.
 $ grep -w "word" file
 ```
 
+## id
+Checks users and group. Example:
+```bash
+$ id
+uid=1000(bintang) gid=1000(bintang) groups=1000(bintang),10(wheel),971(docker),974(wireshark) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+```
+
+## chmod
+Usual mode, refer here: http://permissions-calculator.org/info/ 
+
+Special mode:
+**setuid**: executable file with the setuid bit can be executed with the privileges of the file's owner. `chmod 4xxx file` or `chmod u+s`.
+
+**setgid**: executable file with the setgid can be executed with the privileges of the file's group. `chmod 2xxx file` or `chmod g+s file`.
+
+**sticky bit**: when a directory's sticky bit is set, the filesystem treats the files in such directories in a special way so that *only the file owner's, dir owner's, or root can rename/delet the file*. Example: `/tmp` folder. `chmod 1xxx file`.
+
 ## du
 check file/dir size.
 example:
@@ -327,6 +344,36 @@ telnet geekflare 443
 Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships.
 
 Review network connection and open sockets.
+
+Examples:
+```bash
+# display routing table
+netstate -r
+
+# display network services
+netstate -i
+
+# continuous monitorign
+netstat -c
+
+# see tcp connections
+netstat -t
+
+# see udp conn
+netstate -u
+
+# see state LISTENING
+netstate -L
+
+# practical use
+netstate -tulpn # p: display programe name, n: numeric
+```
+
+## lsof
+lsof lists the open files associated with an application. Example:
+```bash
+lsof -i tcp:80
+```
 
 ## nmap
 check opened ports. port scanner.
