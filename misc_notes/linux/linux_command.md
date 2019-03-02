@@ -127,7 +127,8 @@ $ du -h foldername -d 0 (-d for depth, 0 will print the size of foldername only)
 $ du -h foldername -d 1 (will print -d 0 and the recursive of depth 1)
 ```
 ## df
-show disk usage
+- show disk usage
+- find out which partition a directory is on. Command: `df -h /path/to/dir`
 ## sort
 example
 ```bash
