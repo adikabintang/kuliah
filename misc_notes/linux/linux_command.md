@@ -564,5 +564,7 @@ File descriptor 2 is the `stderr`.
 
 Example:
 ```bash
-$ cat foo.txt > output.txt 2>&1
+$ ./main.out > output.txt 2>&1 # this will save stderr and stdout output to output.txt, but nothing appears on screen
+
+$ ./main.out 2>&1 | tee output.txt # this will save stderr and stdout to output.txt, they also appear on screen
 ```
