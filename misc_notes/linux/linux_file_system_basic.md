@@ -54,9 +54,10 @@ How to create a symlink:
 ln -s /path/to/src /path/to/dst
 ```
 
-# Special notes
+# Other notes
 ## /proc
 Reading material: https://www.linux.com/news/discover-possibilities-proc-directory 
+
 `/proc` directory holds all the details about the Linux system such as processes and configuration parameters.
 
 Inside this proc, there are:
@@ -64,3 +65,12 @@ Inside this proc, there are:
 - `/proc/cpuinfo`
 - `/proc/meminfo`
 - etc.
+
+## System calls when working with data
+Reading material: http://profile.iiita.ac.in/bibhas.ghoshal/lab_files/System%20calls%20for%20files%20and%20directories%20in%20Linux.html
+
+They are in C. For convenience, only the first system call I write with full name and arguments. Refer to the above link to get more details.
+1. Open or create file: `open(const char *path, int flags, ...)`
+2. Create file (like `touch`): `creat(path, mode)`
+3. Read: `ssize_t read(fd, buf, noct)`
+4. etc
