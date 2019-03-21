@@ -19,7 +19,7 @@
 %==========================================================
 
 \begin{abstract}
-  Industry 4.0 is expected to be the next big phase in industry. Digital twins, defined as digital representations of physical objects such as machines, have an important role in Industry 4.0. This paper discusses the digital twin in the context of Industry 4.0 as well as the supporting technologies for digital twins such as the Internet of Things (IoT), cloud computing, fog and edge computing, as well as the software architecture for digital twins.
+  Industry 4.0 is expected to be the next big phase in industry. Digital Twins (DT), defined as digital representations of physical objects such as machines, have an important role in Industry 4.0. This paper discusses the digital twin in the context of Industry 4.0 as well as the supporting technologies for digital twins such as the Internet of Things (IoT), cloud computing, fog and edge computing, as well as the software architecture for DT.
   
 \vspace{3mm}
 \noindent KEYWORDS: Digital Twin, Industrial Internet of Things, Industry 4.0
@@ -32,23 +32,23 @@
 
 \section{Introduction}
 
-Industry 4.0 is the next big phase in industry. With industry 4.0, it is possible to gather real-time data from the machines that run in industry and process the data into something meaningful and useful. Industry 4.0 mainly consists of three supporting technologies: IoT, Cyber-Physical Systems (CPS), and Smart Factories \cite{hermann2016design}. The combination of these technologies builds interconnected devices forming digital twins.
+Industry 4.0 is the next big phase in industry. With Industry 4.0, it is possible to gather real-time data from the machines that run in industry and process the data into something meaningful and useful. Industry 4.0 mainly consists of three supporting technologies: IoT, Cyber-Physical Systems (CPS), and Smart Factories \cite{hermann2016design}. The combination of these technologies builds interconnected devices forming Digital Twins (DT).
 
-A digital twin models a physical object by creating a digital representation using real-time data \cite{Cheatshe3:online}. The data is gathered throughout its life-cycle and used as the source to monitor, learn from, and enhance decision making. A digital twin enables engineers to monitor and understand how the machines behave once it is released and run by users. Furthermore, engineers can analyze the data and predict the future performance of the machines.
+A DT models a physical object by creating a digital representation using real-time data \cite{Cheatshe3:online}. The data is gathered throughout its life-cycle and used as the source to monitor, learn from, and enhance decision making. A DT enables engineers to monitor and understand how the machines behave once it is released and run by users. Furthermore, engineers can analyze the data and predict the future performance of the machines.
 
-There are some use cases of digital twins for Industry 4.0. Consider a Printed Circuit Board (PCB) printer for electronic manufacturers. The PCB printer must be very precise, because the smallest error by the laser cutter may lead to PCB flaws. A digital twin enables engineers and technicians to monitor and analyze the data to predict the time when the spare parts wear out. Another example would be monitoring the jet engine of airplanes. By analyzing data gathered in real-time, engineers and technicians may predict failures in jet systems, which will lead to the reduction of airplane incidents. Furthermore, digital twins may give feedback to the engineers who design the machine to help them realize an agile development system.
+There are some use cases of DT for Industry 4.0. Consider a Printed Circuit Board (PCB) printer for electronic manufacturers. The PCB printer must be very precise, because the smallest error by the laser cutter may lead to PCB flaws. A DT enables engineers and technicians to monitor and analyze the data to predict the time when the spare parts wear out. Another example would be monitoring the jet engine of airplanes. By analyzing data gathered in real-time, engineers and technicians may predict failures in jet systems, which will lead to the reduction of airplane incidents. Furthermore, DT may give feedback to the engineers who design the machine to help them realize an agile development system.
 
-The main value that the digital twin delivers is an understanding of product performance \cite{Cheatshe3:online}. By understanding performance, manufacturers may detect and understand faults better, create an effective maintenance schedule, troubleshoot machines remotely, and decide appropriate add-on services.
+The main value that the DT delivers is an understanding of product performance \cite{Cheatshe3:online}. By understanding performance, manufacturers may detect and understand faults better, create an effective maintenance schedule, troubleshoot machines remotely, and decide appropriate add-on services.
 
-The digital twin has some challenges in its development and implementation. In \cite{bienhaus2017patterns}, the author has stated a number of challenges such as data consistency between the real physical assets and the digital representation, as well as connectivity and security concerns of cloud computing for digital twins. Software architectural aspects such as internal structure, APIs, integration, and runtime environment are also critical challenges for digital twins \cite{malakuti2018architectural}.
+The DT has some challenges in its development and implementation. In \cite{bienhaus2017patterns}, the author has stated a number of challenges such as data consistency between the real physical assets and the digital representation, as well as connectivity and security concerns of cloud computing for DT. Software architectural aspects such as internal structure, APIs, integration, and runtime environment are also critical challenges for DT \cite{malakuti2018architectural}.
 
 \subsection{Scope and Goals}
 \label{sec:emphasis}
-This paper aims to review the concept of digital twins for Industry 4.0 as well as the tools and challenges to implement digital twins. The role of the IoT, software deployment technologies, API, and cloud computing in digital twins will be the main focus of this paper.
+This paper aims to review the concept of DT for Industry 4.0 as well as the tools and challenges to implement DT in manufacturing context. The role of the IoT, software deployment technologies, API, and cloud computing in DT will be the main focus of this paper. Furthermore, existing approaches in developing and implementing the DTn will also be discussed.
 
 \subsection{Structure}
 \label{sec:em}
-The rest of this paper is organized as follows. Section discusses the technologies enabling digital twins, such as IoT, cloud computing, edge and fog computing, and big data. Section 3 concludes this review paper.
+The rest of this paper is organized as follows. Section 2 discusses the technologies enabling DT. Section 3 discusses the existing approaches and future works. Section 4 concludes this review paper.
  
 
 %============================================================
@@ -56,6 +56,29 @@ The rest of this paper is organized as follows. Section discusses the technologi
 
 
 %============================================================
+
+\section{Key Technologies for Digital Twins}
+The entity of DT elements can be modeled as a five-dimension DT \cite{Tao2019}. The five-dimension model consists of Physical Entity (PE), Virtual Entity (VE), Services (SS), DT Data (DD) and Connection (CN). Each of these components require technologies to implement in order to form DT.
+
+\subsection{Physical Entity (PE)}
+PE is the real physical entity in the physical space. It contains the real machines with their sensors and actuators. The sensors attached on the PE capture the data from PE during its operation.
+
+To enable PE as DT elements, some technologies are needed. First of all, embedded system is needed on every PE. The computing capabilities embedded in PE is used for reading the data from the sensors and format the data before sent to other DT elements. Secondly, Wireless Sensor Network (WSN) technologies is the backbone of the communication of the sensors data. Other relevant technologies such as distributed sensor layout optimization to reduce redundancy of sensor data, soft sensor to calculate PE's partial parameters, and RFID to track and identify the PE have important role in DT.
+
+\subsection{Virtual Entity (VE)}
+VE consists of a set of models representing the PE. Modeling techniques such as three-dimension solid modeling, physics modeling, behavior modeling, and rule modeling are needed to create a useful modeling of the PE. To keep PE and VE model consistent, model consistency analysis, verification, validation and accreditation must be implemented. These techniques may form a solid representation models of the PE. The models can be combined with Virtual Reality (VR) and Augmented Reality (AR) to create the similar environment to the physical space.
+
+\subsection{Services (Ss)}
+The software services of the DT is intended to be consumed by PE and VE. The services used by PE includes monitoring service, state prediction service and energy consumption optimization service. VE uses the construction service, calibration service and test service for models.
+
+There are some aspects that need to consider to develop services for modeling DT. Resource management for collecting, classifying, and organizing resources in the DT is an important aspect for the services. The services must also be able to transform resources into software services through digital services. Fault-tolerant management is also important to mitigate failures caused by networks, services, sudden high demands of applications. Human-machine interface is also important to enable interaction between users and services.
+
+\subsection{DT Data (DD)}
+DD have data from physical and virtual parts. Therefore, there are massive amount of heterogeneous data. Technologies for processing and securing data including data storage, data modeling, data transformation, data cleaning, data analysis, data mining, data integrity check and data security are required in helping modeling DT data.
+
+\subsection{Connection (CN)}
+CN connects different elements of DT. It enables PE, VE, Ss, and DD to communicate to each other. Key technologies of CN includes communication protocol analysis, communication protocol/interface conversion, wireless communication, Application Programming Interface (API) design, as well as communication standard and specification.
+
 
 
 \section{Technologies for Digital Twins}
