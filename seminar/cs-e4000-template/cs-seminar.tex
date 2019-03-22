@@ -79,6 +79,25 @@ DD have data from physical and virtual parts. Therefore, there are massive amoun
 \subsection{Connection (CN)}
 CN connects different elements of DT. It enables PE, VE, Ss, and DD to communicate to each other. Key technologies of CN includes communication protocol analysis, communication protocol/interface conversion, wireless communication, Application Programming Interface (API) design, as well as communication standard and specification.
 
+\section{Digital Twins Frameworks}
+Several researchers have proposed frameworks for implementing DT. This section discusses and analyzes the approaches proposed by researchers.
+
+\subsection{Current Works}
+Yu Zheng et. al. proposed an application framework of DT to realize full-physical system mapping, life-cycle dynamic modeling and the whole process real-time optimization \cite{zheng2019application}. This application framework consists of three elements, i.e., physical space, virtual space and information-processing layer. Fig.~\ref{fig:app_framwork_zheng} shows the application framework and the interaction among the physical space, virtual space and information-processing layer.
+
+\begin{figure}[t!]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{figures/app_framework_yu_zheng_et_al}
+		\caption{Application Framework for DT \cite{zheng2019application}}
+		\label{fig:app_framwork_zheng}
+	\end{center}
+\end{figure}
+
+The physical space of the framework consists of human workers, machines, materials, rules, and environment. These complex and diverse objects are connected by IoT or WSN technologies. In a manufacturing workshop, for example, sensors and communication equipment collect and deliver data from the physical space such as equipment attributes, status, process, fault and error. Mechanisms and techniques for mapping data to devices are needed to infer the interaction between the physical and digital space.
+
+The information processing layer connects the physical space to virtual space. In addition, it provides bidirectional mapping between physical and virtual space. This layer consists of data storage, data processing, and data mapping modules. Data storage module stores all the data from both physical and virtual space. Data processing module deals with data acquisition, data processing, data analysis, and data fusion. Data mapping utilizes data from storage and processing module to map the operation of physical to virtual space and vice versa.
+
+The virtual space consists of the Virtual Environment Platform (VMP) and DT application subsystem for product lifecycle management. The VMP models 3D virtual model as well as provides operating environment for DT related algorithms. VMP provides virtual models by obtaining data from the database. The data generated from the virtual space is stored as historical data in the database. The combination of historical and real-time data drive the DT application subsystems work synchronously.
 
 
 \section{Technologies for Digital Twins}
