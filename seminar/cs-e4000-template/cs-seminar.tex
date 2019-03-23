@@ -99,6 +99,26 @@ The information processing layer connects the physical space to virtual space. I
 
 The virtual space consists of the Virtual Environment Platform (VMP) and DT application subsystem for product lifecycle management. The VMP models 3D virtual model as well as provides operating environment for DT related algorithms. VMP provides virtual models by obtaining data from the database. The data generated from the virtual space is stored as historical data in the database. The combination of historical and real-time data drive the DT application subsystems work synchronously.
 
+This framework proposed by Yu Zheng et. al. provides a thorough yet general approach in building the DT framework. Further research on the elements of the framework such as the computation models or software architecture in the virtual space, mapping methods between physical and virtual space, methods for data fusion and data processing are needed.
+
+Zhuang et. al. proposed DT-based smart production management and control framework for product assembly shop-floor \cite{Zhuang2018}. The framework consists of four techniques in which each of them need a sub-framework to operate: (1) real-time acquisition, organization, management of the physical space, (2) construction of the virtual space of the shop-floor, (3) DT and big-data driven prediction and (4) production management and control service of the assembly shop-floor. Fig.~\ref{fig:zhuang_framework} shows the framework of DT-based production management and control, with satellite assembly shop-floor as the case study.
+
+\begin{figure}[t!]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{figures/zhuang_dt_framework}
+		\caption{Framework of DT-based production management and control for satellite assembly shop-floor. \cite{Zhuang2018}}
+		\label{fig:zhuang_framework}
+	\end{center}
+\end{figure}
+
+The framework for real-time acquisition, organization and management of physical shop-floor is realized by IoT, workflow, and DT technologies. The smart access to manufacturing resources in the physical space is realized by sensor technologies equipped in the devices. These sensors obtain data to achieve real-time perception of what happens in the physical space. The data collected from the physical space are categorized into three category, i.e., the real-time perception, production process, production activity plan. The data organization and management of shop-floor rely on the product Bill of Materials (BOM) which comes from the product design, process planning, and product assembly stage.
+
+The construction of the virtual space is built on three levels, i.e., element, behavior and rule level. The element level models the geometric and physical models using 3D geometric tools such as Pro/E, SolidWorks, CATIA and AutoCAD. The behavior level represents the behavior of the equipment's operations, materials' transportation and personnel's actions using tools such as FlexSim and Unity3D. The rule level consists of rules that govern the association among elements and operation which ensure the match between physical space to virtual space.
+
+The prediction framework relies on big data and DT technologies. The big data framework uses historical data to create a theoretical prediction. The DT uses real-time data to create a simulation which is analyzed by the personnel. The prediction result from both DT and big data is combined to achieve more accurate prediction.
+
+The production management and control service make real-time decision-making based on the data collected. Furthermore, it also simulates the scheme in the shop-floor. The result of the simulation is used to evaluate the effectiveness of the scheme that is implemented on the shop-floor.
+
 
 \section{Technologies for Digital Twins}
 \subsection{Edge Computing, Fog Computing and Cloud Computing Integration for Digital Twins}
