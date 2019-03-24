@@ -19,7 +19,7 @@
 %==========================================================
 
 \begin{abstract}
-  Industry 4.0 is expected to be the next big phase in industry. Digital Twins (DT), defined as digital representations of physical objects such as machines, have an important role in Industry 4.0. This paper discusses the digital twin in the context of Industry 4.0 as well as the supporting technologies for digital twins such as the Internet of Things (IoT), cloud computing, fog and edge computing, as well as the software architecture for DT.
+  Industry 4.0 is expected to be the next big phase in industry. Digital Twins (DT), defined as digital representations of physical objects such as machines, have an important role in Industry 4.0. This seminar paper discusses an overview of DT technology, key technologies to implement DT, DT frameworks, and supporting technologies to realize the DT framework. From the literature study conducted, the existing works from previous research can support the DT framework to implement DT systems.
   
 \vspace{3mm}
 \noindent KEYWORDS: Digital Twin, Industrial Internet of Things, Industry 4.0
@@ -44,11 +44,11 @@ The DT has some challenges in its development and implementation. In \cite{bienh
 
 \subsection{Scope and Goals}
 \label{sec:emphasis}
-This paper aims to review the concept of DT for Industry 4.0 as well as the tools and challenges to implement DT in manufacturing context. The role of the IoT, software deployment technologies, API, and cloud computing in DT will be the main focus of this paper. Furthermore, existing approaches in developing and implementing the DTn will also be discussed.
+This paper aims to review the concept of DT for manufacturing in Industry 4.0 as well as technologies to build the DT system. This seminar paper is intended as a review paper for DT developers to build DT system.
 
 \subsection{Structure}
 \label{sec:em}
-The rest of this paper is organized as follows. Section 2 discusses the technologies enabling DT. Section 3 discusses the existing approaches and future works. Section 4 concludes this review paper.
+The rest of this paper is organized as follows. Section 2 discusses the key technologies for DT. Section 3 discusses the existing DT framework approaches and supporting technologies to build the DT framework. Section 4 concludes this review paper.
  
 
 %============================================================
@@ -58,26 +58,26 @@ The rest of this paper is organized as follows. Section 2 discusses the technolo
 %============================================================
 
 \section{Key Technologies for Digital Twins}
-The entity of DT elements can be modeled as a five-dimension DT \cite{Tao2019}. The five-dimension model consists of Physical Entity (PE), Virtual Entity (VE), Services (SS), DT Data (DD) and Connection (CN). Each of these components require technologies to implement in order to form DT.
+The entity of DT elements can be modeled as a five-dimension DT \cite{Tao2019}. The five-dimension model consists of Physical Entity (PE), Virtual Entity (VE), Services (SS), DT Data (DD) and Connection (CN). Each of these components requires technologies to implement in order to form DT.
 
 \subsection{Physical Entity (PE)}
-PE is the real physical entity in the physical space. It contains the real machines with their sensors and actuators. The sensors attached on the PE capture the data from PE during its operation.
+PE is the real physical entity in the physical space. It contains the real machines with their sensors and actuators. The sensors attached to the PE capture the data from PE during its operation.
 
-To enable PE as DT elements, some technologies are needed. First of all, embedded system is needed on every PE. The computing capabilities embedded in PE is used for reading the data from the sensors and format the data before sent to other DT elements. Secondly, Wireless Sensor Network (WSN) technologies is the backbone of the communication of the sensors data. Other relevant technologies such as distributed sensor layout optimization to reduce redundancy of sensor data, soft sensor to calculate PE's partial parameters, and RFID to track and identify the PE have important role in DT.
+To enable PE as DT elements, some technologies are needed. First of all, an embedded system is needed on every PE. The computing capabilities embedded in PE is used for reading the data from the sensors and format the data before sent to other DT elements. Secondly, the Wireless Sensor Network (WSN) is the backbone of the communication of the sensors data. Other relevant technologies such as distributed sensor layout optimization to reduce redundancy of sensor data, soft sensor to calculate PE's partial parameters, and RFID to track and identify the PE have an important role in DT.
 
 \subsection{Virtual Entity (VE)}
-VE consists of a set of models representing the PE. Modeling techniques such as three-dimension solid modeling, physics modeling, behavior modeling, and rule modeling are needed to create a useful modeling of the PE. To keep PE and VE model consistent, model consistency analysis, verification, validation and accreditation must be implemented. These techniques may form a solid representation models of the PE. The models can be combined with Virtual Reality (VR) and Augmented Reality (AR) to create the similar environment to the physical space.
+VE consists of a set of models representing the PE. Modeling techniques such as three-dimension solid modeling, physics modeling, behavior modeling, and rule modeling are needed to create useful modeling of the PE. To keep PE and VE model consistent, model consistency analysis, verification, validation and accreditation must be implemented. These techniques may form solid representation models of the PE. The models can be combined with Virtual Reality (VR) and Augmented Reality (AR) to create a similar environment to the physical space.
 
 \subsection{Services (Ss)}
-The software services of the DT is intended to be consumed by PE and VE. The services used by PE includes monitoring service, state prediction service and energy consumption optimization service. VE uses the construction service, calibration service and test service for models.
+The software services of the DT is intended to be consumed by PE and VE. The services used by PE includes monitoring service, state prediction service, and energy consumption optimization service. VE uses the construction service, calibration service and test service for models.
 
 There are some aspects that need to consider to develop services for modeling DT. Resource management for collecting, classifying, and organizing resources in the DT is an important aspect for the services. The services must also be able to transform resources into software services through digital services. Fault-tolerant management is also important to mitigate failures caused by networks, services, sudden high demands of applications. Human-machine interface is also important to enable interaction between users and services.
 
 \subsection{DT Data (DD)}
-DD have data from physical and virtual parts. Therefore, there are massive amount of heterogeneous data. Technologies for processing and securing data including data storage, data modeling, data transformation, data cleaning, data analysis, data mining, data integrity check and data security are required in helping modeling DT data.
+DD have data from physical and virtual parts. Therefore, there are a massive amount of heterogeneous data. Technologies for processing and securing data including data storage, data modeling, data transformation, data cleaning, data analysis, data mining, data integrity check and data security are required in helping modeling DT data.
 
 \subsection{Connection (CN)}
-CN connects different elements of DT. It enables PE, VE, Ss, and DD to communicate to each other. Key technologies of CN includes communication protocol analysis, communication protocol/interface conversion, wireless communication, Application Programming Interface (API) design, as well as communication standard and specification.
+CN connects different elements of DT. It enables PE, VE, Ss, and DD to communicate with each other. Key technologies of CN includes communication protocol analysis, communication protocol/interface conversion, wireless communication, Application Programming Interface (API) design, as well as communication standard and specification.
 
 \section{Implementing Digital Twin Systems}
 Several researchers have proposed frameworks for implementing DT. This section discusses and analyzes the approaches proposed by researchers.
@@ -93,11 +93,11 @@ Yu Zheng et. al. proposed an application framework of DT to realize full-physica
 	\end{center}
 \end{figure}
 
-The physical space of the framework consists of human workers, machines, materials, rules, and environment. These complex and diverse objects are connected by IoT or WSN technologies. In a manufacturing workshop, for example, sensors and communication equipment collect and deliver data from the physical space such as equipment attributes, status, process, fault and error. Mechanisms and techniques for mapping data to devices are needed to infer the interaction between the physical and digital space.
+The physical space of the framework consists of human workers, machines, materials, rules, and the environment. These complex and diverse objects are connected by IoT or WSN technologies. In a manufacturing workshop, for example, sensors and communication equipment collect and deliver data from the physical space such as equipment attributes, status, process, fault and error. Mechanisms and techniques for mapping data to devices are needed to infer the interaction between the physical and digital space.
 
-The information processing layer connects the physical space to virtual space. In addition, it provides bidirectional mapping between physical and virtual space. This layer consists of data storage, data processing, and data mapping modules. Data storage module stores all the data from both physical and virtual space. Data processing module deals with data acquisition, data processing, data analysis, and data fusion. Data mapping utilizes data from storage and processing module to map the operation of physical to virtual space and vice versa.
+The information processing layer connects the physical space to virtual space. In addition, it provides a bidirectional mapping between physical and virtual space. This layer consists of data storage, data processing, and data mapping modules. Data storage module stores all the data from both physical and virtual space. Data processing module deals with data acquisition, data processing, data analysis, and data fusion. Data mapping utilizes data from storage and processing module to map the operation of physical to virtual space and vice versa.
 
-The virtual space consists of the Virtual Environment Platform (VMP) and DT application subsystem for product lifecycle management. The VMP models 3D virtual model as well as provides operating environment for DT related algorithms. VMP provides virtual models by obtaining data from the database. The data generated from the virtual space is stored as historical data in the database. The combination of historical and real-time data drive the DT application subsystems work synchronously.
+The virtual space consists of the Virtual Environment Platform (VMP) and DT application subsystem for product lifecycle management. The VMP models 3D virtual model as well as provides an operating environment for DT related algorithms. VMP provides virtual models by obtaining data from the database. The data generated from the virtual space is stored as historical data in the database. The combination of historical and real-time data drive the DT application subsystems work synchronously.
 
 Zhuang et. al. proposed DT-based smart production management and control framework for product assembly shop-floor \cite{Zhuang2018}. The framework consists of four techniques in which each of them need a sub-framework to operate: (1) real-time acquisition, organization, management of the physical space, (2) construction of the virtual space of the shop-floor, (3) DT and big-data driven prediction and (4) production management and control service of the assembly shop-floor. Fig.~\ref{fig:zhuang_framework} shows the framework of DT-based production management and control, with satellite assembly shop-floor as the case study.
 
@@ -109,28 +109,28 @@ Zhuang et. al. proposed DT-based smart production management and control framewo
 	\end{center}
 \end{figure}
 
-The framework for real-time acquisition, organization and management of physical shop-floor is realized by IoT, workflow, and DT technologies. The smart access to manufacturing resources in the physical space is realized by sensor technologies equipped in the devices. These sensors obtain data to achieve real-time perception of what happens in the physical space. The data collected from the physical space are categorized into three category, i.e., the real-time perception, production process, production activity plan. The data organization and management of shop-floor rely on the product Bill of Materials (BOM) which comes from the product design, process planning, and product assembly stage.
+The framework for real-time acquisition, organization and management of physical shop-floor is realized by IoT, workflow, and DT technologies. The smart access to manufacturing resources in the physical space is realized by sensor technologies equipped in the devices. These sensors obtain data to achieve a real-time perception of what happens in the physical space. The data collected from the physical space are categorized into three categories, i.e., the real-time perception, production process, production activity plan. The data organization and management of shop-floor rely on the product Bill of Materials (BOM) which comes from the product design, process planning, and product assembly stage.
 
 The construction of the virtual space is built on three levels, i.e., element, behavior and rule level. The element level models the geometric and physical models using 3D geometric tools such as Pro/E, SolidWorks, CATIA and AutoCAD. The behavior level represents the behavior of the equipment's operations, materials' transportation and personnel's actions using tools such as FlexSim and Unity3D. The rule level consists of rules that govern the association among elements and operation which ensure the match between physical space to virtual space.
 
-The prediction framework relies on big data and DT technologies. The big data framework uses historical data to create a theoretical prediction. The DT uses real-time data to create a simulation which is analyzed by the personnel. The prediction result from both DT and big data is combined to achieve more accurate prediction.
+The prediction framework relies on big data and DT technologies. The big data framework uses historical data to create a theoretical prediction. The DT uses real-time data to create a simulation which is analyzed by the personnel. The prediction result from both DT and big data is combined to achieve a more accurate prediction.
 
 The production management and control service make real-time decision-making based on the data collected. Furthermore, it also simulates the scheme in the shop-floor. The result of the simulation is used to evaluate the effectiveness of the scheme that is implemented on the shop-floor.
 
-Both frameworks proposed by Zhuang et. al. and Yu Zheng et. el. provide guidelines for implementing DT in manufacturing. The combination of both framework may provide a DT systems which provides predictive maintenance and product life-cycle management from the developers' perspective. However, there are some works that need to investigate in order to fully implement DT. Further research on the elements of the framework such as the computation models or software architecture in the virtual space, mapping methods between physical and virtual space, methods for data fusion and data processing are needed.
+Both frameworks proposed by Zhuang et. al. and Yu Zheng et. al. provide guidelines for implementing DT in manufacturing. The combination of both frameworks may provide a DT system which provides predictive maintenance and product life-cycle management from the developers' perspective. However, there are some works that need to investigate in order to fully implement DT. Further research on the elements of the framework such as the computation models or software architecture in the virtual space, mapping methods between physical and virtual space, methods for data fusion and data processing are needed.
 
 \subsection{Supporting Technologies for DT Frameworks}
 In order to implement the DT framework, supporting technologies in IoT, cloud computing, big data and software architecture are needed.
 
-The DT framework starts from collecting and aggregating data from the physical space. Manufacturing Execution System (MES) is commonly used for both collecting data and monitor process and operation of the manufacturing process. MES is generally proprietary and expensive. As a result, small manufacturing enterprise may have difficulties in deploying MES in their system.
+The DT framework starts with collecting and aggregating data from the physical space. Manufacturing Execution System (MES) is commonly used for both collecting data and monitor process and operation of the manufacturing process. MES is generally proprietary and expensive. As a result, small manufacturing enterprise may have difficulties in deploying MES in their system.
 
 Coronado et. al. came up with a low-cost MES system based on Android \cite{UrbinaCoronado2018}. This tool captures part and tooling information using an Android-based MES. The data from MES is combined with data from device sensors to represent parts, operators, capital equipment and consumable in shop-floor DT.
 
-The data collecting and aggregating process starts with device sensors data that is sent using MTConnect protocol. MTConnect Standard is a protocol for data communication from manufacturing equipments. However, not all equipments are MTConnect compatible, and even some of them do not have communication capability to send data through the network.
+The data collecting and aggregating process starts with device sensors data that is sent using the MTConnect protocol. MTConnect Standard is a protocol for data communication from manufacturing equipment. However, not all equipment are MTConnect compatible, and even some of them do not have communication capability to send data through the network.
 
-To gather further data from the shop-floor that is not accessible by the MTConnect, the Android-based MES is used. For example, operators in the shop-floor can use the MES to register the newly created or modified materials as well as the materials' properties. The data is sent to the cloud where the data is combined with the data coming from MTConnect protocol. In addition, the MES is also an interface for the operators to see the collected and processed data to support the manufacturing process.
+To gather further data from the shop-floor that is not accessible by the MTConnect, the Android-based MES is used. For example, operators in the shop-floor can use the MES to register the newly created or modified materials as well as the materials' properties. The data is sent to the cloud where the data is combined with the data coming from the MTConnect protocol. In addition, the MES is also an interface for the operators to see the collected and processed data to support the manufacturing process.
 
-The approach proposed by Coronado et. al. makes the MES integration with the DT more feasible to small enterprises due to pervasiveness and the low-cost of Android system. However, concrete design of the software middleware in the cloud is not discussed well.   
+The approach proposed by Coronado et. al. makes the MES integration with the DT more feasible to small enterprises due to the pervasiveness and the low-cost of Android system. However, a concrete design of the software middleware in the cloud is not discussed well.   
 
 A software middleware sits between physical and virtual space to process data from physical space to virtual space and vice versa. Ciavotta et. al. proposed a microservice-based middleware to process data from the CPS which yields output data for DT environment, named MAYA Support Infrastructure (MSI) \cite{ciavotta2017microservice}. It is part of the MAYA Platform; a DT platform consisting of a communication layer, middleware, and simulation framework. The middleware manages the life-cycle of the DT for simulation and synchronizes CPS-to-DT. Fig.~\ref{fig:maya_platform} shows the service diagram of the MSI as well as how it resides in the MAYA platform.
 
@@ -142,69 +142,24 @@ A software middleware sits between physical and virtual space to process data fr
 	\end{center}
 \end{figure}
 
-The middleware is a microservice-based service which consists of five services. The first service is the front end services which is the interface to the MSI in form of API gateway and web-based UI. The security service enforces the authentication and authorization using OAuth2. The SOA enabling service has two elements, i.e., the service registry and configuration server. The service registry provides REST endpoint service discovery using Netflix Eureka, and the configuration server stores the configuration properties of the microservice system. Monitoring console service provides the system monitoring using Elasticsearch, Logstash, and Kibana (ELK). Finally, the backend service provides create, read, update and delete to DT resources. This middleware can also provide data for DT visualization using Augmented Reality (AR) \cite{schroeder2016visualising}.
+The middleware is a microservice-based service which consists of five services. The first service is the front-end service which is the interface to the MSI in the form of API gateway and web-based UI. The security service enforces the authentication and authorization using OAuth2. The SOA enabling service has two elements, i.e., the service registry and configuration server. The service registry provides REST endpoint service discovery using Netflix Eureka, and the configuration server stores the configuration properties of the microservice system. Monitoring console service provides system monitoring using Elasticsearch, Logstash, and Kibana (ELK). Finally, the backend service provides create, read, update and delete to DT resources.
 
-There are some benefits of using microservice-based middleware. The microservice technology is known for its agility, isolation and resilience and elasticity. However, it also increases complexity of the system at the same time.
+There are some benefits of using microservice-based middleware. The microservice technology is known for its agility, isolation and resilience and elasticity. However, it also increases the complexity of the system at the same time.
 
-The MSI middleware still needs further research in communication protocols as implementing IoT-friendly protocol such as MQTT in the front-end service. The middleware also should support standard data exchange format such as AutomationML.
+The MSI middleware still needs further research in communication protocols as implementing IoT-friendly protocol such as MQTT in the front-end service. The middleware also should support standard data exchange format such as Automation Markup Language (AutomationML). Due to its flexibility of the microservice-based middleware, these components can be implemented without re-deploying the whole system.
 
+The service of accepting AutomationML data format is needed in the middleware. Schroeder et. al. demonstrated how to exchange data between systems in DT using AutomationML \cite{Schroeder2016automationml}. In modeling the physical system, AutomationML data format is used to map the components of the automation system. After the model is defined, other systems will use the model to obtain information. Finally, the consumer of the data such as monitoring applications can retrieve the data using RESTful style.
 
+After the aforementioned technologies have been established within the framework, the system must implement visualization technology to imitate the physical objects as the DT. Schroeder et. al. used Augmented Reality (AR) to visualize the twin of the physical object \cite{schroeder2016visualising}. The main idea of the work is the system use web service to get the data of the physical model and supply the data to the visualization system.
 
-
---------------
-
-\section{Technologies for Digital Twins}
-\subsection{Edge Computing, Fog Computing and Cloud Computing Integration for Digital Twins}
-Digital Twins and CPS can be divided into three levels according to location of the services: unit level, system level, and System of System (SoS) level \cite{qi2018modeling}. Unit level is the level where local data processing is done by the CPS. The concept of production line, smart factory, and shop floor lies on system level. SoS level is the level which integrates the different systems from system level. Edge computing, fog computing and cloud computing may help integrate the three levels of Digital Twin Systems.
-
-Edge devices, such as the computing resources of the CPS itself, is the source of data. Those devices may also be able to do computation without having to send the data to remote location to reduce latency. Edge computing operation does not always rely on network connection to operate. Therefore, hard real-time response is possible if the computation is done on the edge.
-
-System level may take benefits of fog computing. Fog computing brings the concept of bringing programs to the data, and not vice versa. Fog computing does the computation and storage to the edge network. In this way, the long latency processing that usually comes with cloud computing can be avoided. Human-machine interface and information management systems such as Customer Relationship Management (CRM) cab be connected to the fog computing. However, the capability of devices in fog computing is limited compared to the cloud computing devices. Therefore, at some point, the processing must be done on cloud platform. 
-
-Cloud platform may help digital twin systems in integrating the systems from the system level. Long-term and massive data storage is handled by cloud computing. It provides architectural flexibility and utilization of external parties to be involved in further value creation.
-
-This system architecture has some challenges that needs to be solved. The number of edge and fog devices deployed must be increased. Furthermore, their processing power and storage capacities must be improved to handle more computation. As the computation is done physically close to the users, the security of this systems also require further research.
-
-\subsection{Cloud Technologies for Digital Twins}
-Digital twins may take advantages of cloud technologies. The digital twin can be modeled as a Digital Twin-as-a-Service (DTaaS) \cite{borodulin2017towards}. In DTaaS, the cloud platform has a number of levels of abstractions. 
-
-The first level is the digital twin users, who perceive the digital twins as a software service. At the level of the digital twin developer, the cloud platform provides the resources for the development of digital twins as a Platform-as-a-Service (PaaS) model. One of the resources needed by the developers is computing services for specific data operation. These computing services are represented as microservices provided by computing service developers. The computing services are run on a containers provided by the cloud infrastructure providers.
-
-Ciavotta et. al. \cite{ciavotta2017microservice} proposed a microservice-based middleware for digital factory with digital interface in it, named MAYA Platform. The digital interface in that digital factory refers to the digital twin. The designed middleware focuses on enabling interoperability between enterprise applications and CPS.
-
-MAYA Platform is a distributed platform consisting of three main components: MAYA Communication Layer (MCL) for aggregation, discovery, orchestration and communication among CPSs; MAYA Support Infrastructure (MSI) for managing the Digital Twins, enabling definition, data processing, and dismissal with miroservice and Big Data technologies; MAYA Simulation Framework (MSF) for simulation and real-to-digital synchronization of the Digital Twins.
-
-The usage scenario of MAYA Platform can be described as the following:
-\begin{itemize}
-	\item New CPS devices are registered manually.
-	\item The CPS logs in on MSI.
-	\item MAYA Platform sets up the Digital Twin Functional Model
-	\item The communication is established between CPS and MSI. The CPS sends data to the platform.
-	\item The Functional Model creates updates periodically of the corresponding Digital Twin.
-	\item The MSF performs the simulation by accessing the simulation model of the Digital Twin.
-\end{itemize}
-
-The key focus of the MAYA Platform design is on the MSI. The authors chose microservices because it provides agility, isolation, resilience and elasticity. However, the author also mentioned about the challenges of microservice for this platform, i.e, the difficulties of managing distributed data and the increasing complexity of the software system. Big Data is also part of the MSI. The platform may take benefits of Big Data technologies such as simple but reliable processing, multi-paradigm and general purpose, robust, and scalable.
-
-\subsection{Software Architecture}
-Software Web Services and Augmented Reality (AR) may help in visualizing the Digital Twins \cite{schroeder2016visualising}. Data gathered from CPS is stored in data repositories. Web services are implemented to retrieve the data from the repositories, and the data is visualized using AR.
-
-The architecture of the software for Digital Twins visualization can be divided into five layers. The first layer is the device layer, which is a software layer composed by the devices, such as computers, tablets and mobile devices, accessing the system to see the visualization. The second layer is the user interface layer, which can be an AR interface. The third layer is the web service layer using RESTful web service. The forth layer is the query layer, which is responsible for retrieving the data from the data repositories. Finally, the fifth layer is the data repository layer.
-
-\subsection{Big Data and Digital Twins}
-Digital Twins' data sources are generated from the product lifecycle in manufacturing such as equipment data, material data, and environmental data collected by IoT \cite{TAO2019183}. The data from the manufacturing process can be high in volume, variety, velocity, variability, and value.
-
-Big data and digital twins can work together to help product design driven development. Without big data and digital twins, some components of manufacturing machines must be manufactured to assess the design quality. Big data and digital twins can create vivid simulations to assess design quality. Big data technologies will process the data from the simulation to identify problems and improve design scheme. The combination of digital twins and big data shortens the design cycle of a product, thus reducing the cost of time and money.
-
-
-
-%============================================================
-
+The AR system, which provides visualization to the users, query the data of a physical model to the web service. In this case, the web service may have the same architecture as the aforementioned microservice-based middleware. After getting the data from the web service, the visualization is achieved by creating an AR application based on tools such as Vuforia Engine. This work shows that visualizing DT with AR technology can be achieved by getting data from the middleware and provide the data to the visualization system.
 
 \section{Conclusion}
+This seminar paper presents an overview of DT technology, key technologies for DT, and DT framework as well as supporting technologies for the DT framework. It starts with the definition of DT and continues to discuss key technologies for each component of DT.
 
-To be added.
+The main focus of this seminar is to discuss existing frameworks for DT and how to realize the framework using related technologies. Two frameworks are examined and discussed in this paper. Although the two frameworks have a different perspective in defining the elements of DT, both of them have three abstractions of the DT: the physical space, virtual space, and information and data processing space.
 
+Supporting technologies from various existing works to realize the DT framework are also discussed. The supporting technologies include MTConnect protocol for machine communication, Android-based MES for operation, microservice-based middleware in the cloud, AutomationML data exchange format, and AR for visualization of DT. These existing works can be combined to follow the DT frameworks to implement DT for manufacturing in Industry 4.0.
 
 %============================================================
 
