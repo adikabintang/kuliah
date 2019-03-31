@@ -57,27 +57,46 @@ The rest of this paper is organized as follows. Section 2 discusses the key tech
 
 %============================================================
 
-\section{Key Technologies for Digital Twins}
-The entity of DT elements can be modeled as a five-dimension DT \cite{Tao2019}. The five-dimension model consists of Physical Entity (PE), Virtual Entity (VE), Services (SS), DT Data (DD) and Connection (CN). Each of these components requires technologies to implement in order to form DT.
+\section{Principles of Building Digital Twin Systems}
+\subsection{Requirement Analysis of Digital Twin Systems}
+There are for requirements for building DT systems which need to be analyzed \cite{Tao2019}. These requirements can be used to determine what key technologies are needed to build DT systems.
 
-\subsection{Physical Entity (PE)}
-PE is the real physical entity in the physical space. It contains the real machines with their sensors and actuators. The sensors attached to the PE capture the data from PE during its operation.
+From the application of DT aspcet, the first requirement is DT systems must be general enough to support various applications. Although the DT was used only for aerospace systems, recently the DT has been envisioned to support wider application fields such as manufacturing, construction, and health-care.
 
-To enable PE as DT elements, some technologies are needed. First of all, an embedded system is needed on every PE. The computing capabilities embedded in PE is used for reading the data from the sensors and format the data before sent to other DT elements. Secondly, the Wireless Sensor Network (WSN) is the backbone of the communication of the sensors data. Other relevant technologies such as distributed sensor layout optimization to reduce redundancy of sensor data, soft sensor to calculate PE's partial parameters, and RFID to track and identify the PE have an important role in DT.
+From the technology aspect, since the main aim of the DT is to fuse the interaction in CPS, the DT must embrace the integration of new generation information technologies such as IoT, cloud computing, big data, and artificial intelligence (AI) to support its goal.
 
-\subsection{Virtual Entity (VE)}
-VE consists of a set of models representing the PE. Modeling techniques such as three-dimension solid modeling, physics modeling, behavior modeling, and rule modeling are needed to create useful modeling of the PE. To keep PE and VE model consistent, model consistency analysis, verification, validation and accreditation must be implemented. These techniques may form solid representation models of the PE. The models can be combined with Virtual Reality (VR) and Augmented Reality (AR) to create a similar environment to the physical space.
+From modeling object aspect, the DT must integrate and fuse operational data from physical space and simulated data from virtual space. The DT must also be encapsulated as services which have user-friendly interface and ease the user operations.
 
-\subsection{Services (Ss)}
-The software services of the DT is intended to be consumed by PE and VE. The services used by PE includes monitoring service, state prediction service, and energy consumption optimization service. VE uses the construction service, calibration service and test service for models.
+From the modeling method aspect, the DT requires high-fidelity virtual modeling. The virtual modeling includes geometrical, physical, behavior, and rules modeling.
 
-There are some aspects that need to consider to develop services for modeling DT. Resource management for collecting, classifying, and organizing resources in the DT is an important aspect for the services. The services must also be able to transform resources into software services through digital services. Fault-tolerant management is also important to mitigate failures caused by networks, services, sudden high demands of applications. Human-machine interface is also important to enable interaction between users and services.
+\subsection{Key Technologies of Digital Twins}
+The requirements analysis leads to the abstraction of the DT concept model. Fig.~\ref{fig:Tao_DT_concept_model} shows the DT concept model which is divided into five dimensions, i.e. the Physical Entity (PE), Virtual Entity (VE), Services (Ss), DT Data (DD), and Connection (CN). Each of these components have its own key technologies to build the DT system as a whole \cite{Tao2019}, which are summarized in Fig.~\ref{fig:Tao_DT_key_techs}.
 
-\subsection{DT Data (DD)}
-DD have data from physical and virtual parts. Therefore, there are a massive amount of heterogeneous data. Technologies for processing and securing data including data storage, data modeling, data transformation, data cleaning, data analysis, data mining, data integrity check and data security are required in helping modeling DT data.
+\begin{figure}[t!]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{figures/Tao_DT_concept_model}
+		\caption{DT concept model \cite{Tao2019}}
+		\label{fig:Tao_DT_concept_model}
+	\end{center}
+\end{figure}
 
-\subsection{Connection (CN)}
-CN connects different elements of DT. It enables PE, VE, Ss, and DD to communicate with each other. Key technologies of CN includes communication protocol analysis, communication protocol/interface conversion, wireless communication, Application Programming Interface (API) design, as well as communication standard and specification.
+\begin{figure}[t!]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{figures/Tao_DT_key_techs}
+		\caption{Key technologies for DT \cite{Tao2019}}
+		\label{fig:Tao_DT_key_techs}
+	\end{center}
+\end{figure}
+
+The PE is the real physical entity in the physical space. It contains the real machines with their sensors and actuators. The technologies in the PE includes embedded systems to embed computing capabilities to the entities, RFID to track and identify the entities, Wireless Sensor Network (WSN) to transmit sensors' data, and distributed sensor layout optimization to reduce information redundancy.
+
+The VE consists of a set of models representing the PE. Modeling techniques such as three-dimension solid modeling, physics modeling, behavior modeling, and rule modeling are needed to create useful modeling of the PE. To keep PE and VE model consistent, model consistency analysis, verification, validation and accreditation must be implemented.
+
+The Ss of the DT is intended to be consumed by PE and VE. The services used by PE includes monitoring service, state prediction service, and energy consumption optimization service. VE uses the construction service, calibration service and test service for modeling. Some aspects are needed to create and maintain Ss, i.e., resource management, service description, service encapsulation, service visualization, service search and matching, service evaluation, service optimal selection and combination, fault-tolerant management and human-machine interface (HMI).
+
+The DD have data from physical and virtual parts. Therefore, there are a massive amount of heterogeneous data. Technologies for processing and securing data including data storage, data modeling, data transformation, data cleaning, data analysis, data mining, data integrity check and data security are required in helping modeling DT data.
+
+The CN connects different elements of DT. It enables PE, VE, Ss, and DD to communicate with each other. Key technologies of CN includes communication protocol analysis, communication protocol/interface conversion, wireless communication, Application Programming Interface (API) design, as well as communication standard and specification.
 
 \section{Implementing Digital Twin Systems}
 Several researchers have proposed frameworks for implementing DT. This section discusses and analyzes the approaches proposed by researchers.
