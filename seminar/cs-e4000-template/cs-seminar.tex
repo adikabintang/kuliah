@@ -19,10 +19,10 @@
 %==========================================================
 
 \begin{abstract}
-  Industry 4.0 is expected to be the next big phase in industry. Digital Twins (DT), defined as digital representations of physical objects such as machines, have an important role in Industry 4.0. This seminar paper discusses an overview of DT technology, key technologies to implement DT, DT frameworks, DT tools and how they can be combined to build DT systems. From the literature study conducted, the existing works from previous research can be combined to build DT systems.
+  Industry 4.0 is expected to be the next big phase in industries. One of the challenges in Industry 4.0 is monitoring and controlling industrial machines in real-time within a virtual platform. Digital Twin (DT), defined as a digital representation of a physical object, supports Industry 4.0 for controlling, monitoring, and providing data for analysis in manufacturing. A literature study has been conducted to review DT in manufacturing. This seminar paper is intended as a review paper for DT developers and gives discussions on an overview of DT, key technologies to implement DT, DT frameworks, DT tools and how they can be combined to build DT systems. From the literature study conducted, DT frameworks and tools rely much on embedded systems, Internet of Things (IoT), cloud services and physical modeling software. Furthermore, this seminar also discusses about the combinations of the existing frameworks and tools to create new frameworks according to the application requirements.
   
 \vspace{3mm}
-\noindent KEYWORDS: Digital Twins, Industry 4.0, Frameworks, Tools
+\noindent KEYWORDS: Digital Twins, Industry 4.0, Digital Twin Frameworks, Digital Twin Tools
 
 \end{abstract}
 
@@ -40,7 +40,7 @@ There are some use cases of DT for Industry 4.0. Consider a Printed Circuit Boar
 
 The main value that the DT delivers is an understanding of product performance \cite{Cheatshe3:online}. By understanding performance, manufacturers may detect and understand faults better, create an effective maintenance schedule, troubleshoot machines remotely, and decide appropriate add-on services.
 
-The DT has some challenges in its development and implementation. In \cite{bienhaus2017patterns}, the author has stated a number of challenges such as data consistency between the real physical assets and the digital representation, as well as connectivity and security concerns of cloud computing for DT. Software architectural aspects such as internal structure, APIs, integration, and runtime environment are also critical challenges for DT \cite{malakuti2018architectural}.
+The DT has some challenges in its development and implementation. In \cite{bienhaus2017patterns}, the author has stated a number of challenges such as data consistency between the real physical assets and the digital representation, as well as connectivity and security concerns of cloud computing for DT. Software architectural aspects such as internal structure, APIs, integration and runtime environment are also critical challenges for DT \cite{malakuti2018architectural}.
 
 \subsection{Scope and Goals}
 \label{sec:emphasis}
@@ -48,7 +48,7 @@ This paper aims to review the concept of DT for manufacturing in Industry 4.0 as
 
 \subsection{Structure}
 \label{sec:em}
-The rest of this paper is organized as follows. Section 2 discusses the key technologies for DT. Section 3 discusses the existing DT framework approaches and tools to build the DT framework. Section 4 concludes this review paper and discusses future work.
+The rest of this paper is organized as follows. Section 2 discusses the key technologies for DT. Section 3 discusses the existing DT framework approaches and tools to build the DT systems. Section 4 concludes this review paper and discusses future work.
  
 
 %============================================================
@@ -99,7 +99,7 @@ The DD contains data from physical and virtual space. Therefore, the number of h
 The CN connects different elements of DT. It enables PE, VE, Ss, and DD to communicate with each other. Key technologies of CN includes communication protocol analysis, communication protocol/interface conversion, wireless communication, Application Programming Interface (API) design, as well as communication standard and specification.
 
 \section{Implementing Digital Twin Systems}
-This section starts by discussing the existing DT frameworks, which give guideline or supporting structures for building DT systems. Then, it continues to discuss tools to realize DT framework. Finally, the discussion of the DT frameworks combinations and tools is presented.
+This section starts by discussing the existing DT frameworks, which give guideline or supporting structures for building DT systems. Then, it continues to discuss tools to realize DT framework. Finally, the discussion about the combinations of various DT frameworks and tools is presented.
 
 \subsection{Digital Twin Frameworks}
 Some researchers have proposed frameworks for building DT. While some of them propose holistic frameworks, there are also frameworks focusing on one particular dimension of DT. Table~\ref{tab:table_tools} shows a brief summary of the discussed frameworks.
@@ -112,18 +112,18 @@ Some researchers have proposed frameworks for building DT. While some of them pr
 		Zheng et al. \cite{zheng2019application}                                                         & Application framework for DT in manufacturing                                         & Data synchronization; mapping methods between physical and digital space; application mode of DT                                                                                                                                                                    \\ \hline
 		Zhuang et al. \cite{Zhuang2018}                                                                   & Framework of DT-based smart production management and control for assembly shop-floor & Construction and optimization of IoT networks in a physical assembly shop floor; construction, optimization, and running of an assembly shop-floor DT; construction of big data management platform; modeling and implementation of smart decision making algorithm \\ \hline
 		Zhang et al. \cite{Zhang2017}                                                                    & DT modeling based on perception data modeled as ontology                              & Dynamic linkage between physical, digital, 3D; fully functional service system; AR for 3D models                                                                                                                                                                    \\ \hline
-		Qi et al. \cite{qi2018modeling}                                                               & Combining edge, fog, and cloud to build DT system                                     & Increase the number of and the capbilities of edge nodes; architecture, platform, and standard of fog computing; data filtering to choose which data to process in edge, fog, and cloud; energy consumption; security                                               \\ \hline
-		Lynn et al. \cite{lynn2018realization}                                                          & modeling and controling physical space through DT                                     & Automated plan generation; enhanced trajectory planning                                                                                                                                                                                                             \\ \hline
-		Botkina et al. \cite{botkina2018digital}                                                           & modeling and controling physical space through DT                                     & Integrating non-tweeting machines to the system                                                                                                                                                                                                                     \\ \hline
+		Qi et al. \cite{qi2018modeling}                                                               & Combining edge, fog, and cloud to build DT system                                     & Increase the number of and the capabilities of edge nodes; architecture, platform, and standard of fog computing; data filtering to choose which data to process in edge, fog, and cloud; energy consumption; security                                               \\ \hline
+		Lynn et al. \cite{lynn2018realization}                                                          & Modeling and controling physical objects through DT                                     & Automated plan generation; enhanced trajectory planning                                                                                                                                                                                                             \\ \hline
+		Botkina et al. \cite{botkina2018digital}                                                           & Modeling and controling physical objects through DT                                     & Integrating non-tweeting machines to the system                                                                                                                                                                                                                     \\ \hline
 		Ciavotta et al. \cite{ciavotta2017microservice} & Software service for DT based on microservice                                         & IoT protocols such as MQTT for CPS communication; AutomationML for data exchange                                                                                                                                                                                    \\ \hline
 	\end{tabular}
 	\caption{Existing DT frameworks}
 	\label{tab:framework_tools}
 \end{table}
 
-Two examples of holistic frameworks for building DT were proposed by Yu Zheng et al. \cite{zheng2019application} and Zhuang et al. \cite{Zhuang2018}. The framework proposed by Yu Zheng et al. aims to realize full-physical system mapping, life-cycle dynamic modeling, and the whole process of real-time optimization. The framework proposed by Zhuang et al. aims to build DT-based smart production management and control framework for product assembly shop-floor.
+Two examples of holistic frameworks for building DT were proposed by Yu Zheng et al. \cite{zheng2019application} and Zhuang et al. \cite{Zhuang2018}. The framework proposed by Yu Zheng et al. aims to build a mapping of physical objects, modeling life-cycle of products in a dynamic way and optimizing real-time process. The framework proposed by Zhuang et al. aims to build DT-based smart production management and control framework for product assembly shop-floor.
 
-Although both frameworks were proposed to build DT for manufacturing, they have different approaches. The framework proposed by Yu Zheng et al. divided the system into three dimensions, i.e, physical space, virtual space, and information-processing layer. On the other hand, the framework proposed by Zhuang et al. divided the system into four dimensions, i.e., management of the physical space, construction of the virtual space of the shop-floor, DT and big-data driven prediction and production management and control service of the assembly shop-floor.
+Although both frameworks were proposed to build DT for manufacturing, they had different approaches. The framework proposed by Yu Zheng et al. divided the system into three dimensions, i.e, physical space, virtual space, and information-processing layer. On the other hand, the framework proposed by Zhuang et al. divided the system into four dimensions, i.e., management of the physical space, construction of the virtual space of the shop-floor, DT and big-data driven prediction and production management and control service of the assembly shop-floor.
 
 Zhang et al. proposed another framework focusing on modeling DT workshop based on perception data \cite{Zhang2017}. The framework consists of three parts, i.e., physical model, ontology-based digital model, and the virtual model. The ontology-based data modeling is what makes this framework different from the others.
 
@@ -135,7 +135,7 @@ Ciavotta et al. suggested the use of microservice architecture for building midd
 
 The PE dimension of DT may come with different messaging formats and protocols. Software service middleware must support a variety of data formats coming from different dimensions of DT. For example, Schroeder et al. proposed a framework for building middleware to accept AutomationML data format and convert them into other data format via REST API \cite{Schroeder2016automationml}.
 
-Several frameworks for virtual entity have also been proposed. Schroeder et al. proposed the use of Augmented Reality (AR) to visualize DT \cite{schroeder2016visualising}, leveraging Vuforia Engine to build the AR system. For controlling physical devices through DT in VE, Lynn et al. \cite{lynn2018realization} and Botkina et al. \cite{botkina2018digital} have slightly different approaches. The framework proposed by Lynn et al. used raw TCP for controlling the device and raw UDP for getting the feedback data from the device, whereas the Botkina et al. approach used the standard Line Information System Architecture (LISA) and ISO 13399.
+Several frameworks for virtual entity have also been proposed. Schroeder et al. proposed the use of Augmented Reality (AR) to visualize DT \cite{schroeder2016visualising}, leveraging Vuforia Engine to build the AR system. For controlling physical devices through DT in VE, Lynn et al. \cite{lynn2018realization} and Botkina et al. \cite{botkina2018digital} had slightly different approaches. The framework proposed by Lynn et al. used raw TCP for controlling the device and raw UDP for getting the feedback data from the device, whereas the Botkina et al. approach used the standard Line Information System Architecture (LISA) and ISO 13399.
 
 So far, all the frameworks discussed suggest the use of cloud computing for their processing and storage. However, some applications are latency sensitive. Bringing data to the cloud which can be physically far from the source of data may add significant latency overhead.
 
@@ -150,7 +150,7 @@ The CN dimension, which connects PE to other dimensions of DT, represents the Io
 
 MES software is commonly used for both collecting data and monitor process and operation of the manufacturing process. MES is generally proprietary and expensive. As a result, small manufacturing enterprise may have difficulties in deploying MES in their system.
 
-Coronado  came up with a low-cost MES system based on Android \cite{UrbinaCoronado2018}. This tool captures part and tooling information using an Android-based MES. The data from MES is combined with data from device sensors to represent parts, operators, capital equipment and consumable in shop-floor DT. This tool supports the Ss dimension of DT as an HMI and resource management tool.
+Coronado et al. came up with a low-cost MES system based on Android \cite{UrbinaCoronado2018}. This tool captures part and tooling information using an Android-based MES. The data from MES is combined with data from device sensors to represent parts, operators, capital equipment and consumable in shop-floor DT. This tool supports the Ss dimension of DT as an HMI and resource management tool.
 
 There are various supporting tools for building the DT services, depending on the system architecture of the service. FIWARE is a middleware for exhanging data that can be used as a service for DT \cite{Schroeder2016automationml}. MAYA Support Infrastructure middleware used Netflix Eureka for service discovery and Elasticsearch-Logstash-Kibana (ELK) for log monitoring \cite{ciavotta2017microservice}. The recent trend in microservice technology is to scale the service horizontally; leveraging containers to deploy the services. For this case, containers orchestration tools such as Docker Swarm and Kubernetes may support the system. However, the containerization is not a silver bullet solution since it may impact the network performance in transfer rate and packet loss negatively \cite{kratzke2017microservices}.
 
@@ -175,7 +175,7 @@ There are some tools, open source or proprietary, available to support the DT fr
 		Docker/containerd and Docker swarm/Kubernetes                & Ss             & Containerization and orchestration of deployed services                                 \\ \hline
 		Relational data storage (MySQL, PostgreSQL)                  & DD             & SQL database                                                                            \\ \hline
 		NoSQL data storage (Apache Cassandra)                        & DD             & NoSQL database                                                                          \\ \hline
-		FlexSim                                                      & VE             & Simulation software to model, simulate, predict, and visualize systems in manufacturing \\ \hline
+		FlexSim                                                      & VE             & Simulation, modeling, visualization and prediction software for manufacturing systems \\ \hline
 		SculptPrint                                                  & VE             & Software for generating tool paths for 5-axis machine tools                             \\ \hline
 		CATIA                                                        & VE             &                                                                                         \\ \cline{1-2}
 		SolidWorks                                                   & VE             &                                                                                         \\ \cline{1-2}
@@ -186,10 +186,10 @@ There are some tools, open source or proprietary, available to support the DT fr
 	\label{tab:table_tools}
 \end{table}
 
-\subsection{Discussion}
+\subsection{Combining Appropriate Frameworks and Tools}
 Several DT frameworks have been discussed to analyze the use cases and limitations. From the limitations and future works of those frameworks, a more complete framework can be built. In principle, the new framework can be formed by combining existing frameworks and adjusted to the application requirements.
 
-For controlling machines in physical space, the framework proposed by Botkina et al. \cite{botkina2018digital} must have tweeting machines in the shop-floor. While this tweeting machines development is not discussed, Lynn et al. \cite{lynn2018realization} describe the mechanism of sending feedback data from actuators with raw UDP. The use of raw UDP by Lynn et al. might not be applicable if it does not comply with existing standards. Instead, OPC UA can be used as the protocol, as the framework developed by Yu Zheng et al. used \cite{zheng2019application}.
+For controlling machines in physical space, the framework proposed by Botkina et al. \cite{botkina2018digital} must have tweeting machines in the shop-floor. While this tweeting machines development is not discussed, Lynn et al. \cite{lynn2018realization} describe the mechanism of sending feedback data from actuators with raw UDP. The use of raw UDP by Lynn et al. might not be applicable if it does not comply with existing standards. This mechanism can be combined with the framework proposed by Yu Zheng et al. \cite{zheng2019application} to use standard protocol such as OPC UA.
 
 The services in DT is described by the framework proposed by Ciavotta et al. \cite{ciavotta2017microservice}. This service is supposed to be deployed in the cloud. However, it does not cover the latency sensitive applications. The combination of the framework proposed by Ciavotta et al. and Qi et al. \cite{qi2018modeling} might be the solution for case sensitive applications since it offers the use of edge, fog, and cloud computing to deploy the services. Furthermore, the use of containers and orchestration in fog, edge, and cloud computing might be used to ease the deployment, maintenance and horizontal scaling of the services. 
 
@@ -204,8 +204,7 @@ DT can conceptually be divided into five dimensions, i.e., the Physical Entity (
 
 Seven frameworks have been analyzed and their chosen tools for DT are also mentioned. These frameworks and tools can be combined to form a more complete framework or to create a framework specific to some certain application requirements. The tools needed to build the DT system to support the frameworks are also discussed. The key technologies used by these frameworks and tools include IoT, embedded systems, software services and APIs, data storage and processing as well as modeling and controlling software.
 
-The research directions or future work for this DT frameworks and tools include the standardization of connection between physical to digital space, adaptive service for modeling different data format, benchmarking and analyzing existing protocols and message formats as well as latency impact of DT to the control systems.
-
+The research directions or future work for this DT frameworks and tools include the standardization of connection between physical to digital space, adaptive service for modeling different data format, the use of AI to analyze data for various purposes such as for predictive maintenance, benchmarking and analyzing existing protocols and message formats as well as latency impact of DT in control systems applications.
  
 
 %============================================================
