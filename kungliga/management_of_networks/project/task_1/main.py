@@ -2,7 +2,7 @@ import pandas as pd
 
 data = pd.read_csv("X.csv", delimiter = ',')
 
-# runq-sz  %%memused  proc/s  cswch/s  all_%%usr  ldavg-1  totsck  pgfree/s  plist-sz  file-nr 
+# 1
 runq_sz_mean = data["runq-sz"].mean()
 runq_sz_min = data["runq-sz"].min()
 runq_sz_max = data["runq-sz"].max()
@@ -132,3 +132,21 @@ print("file-nr max: %.2f" % filenr_max)
 print("file-nr 25th_percentile: %.2f" % filenr_25th_percentile)
 print("file-nr 90th_percentile: %.2f" % filenr_90th_percentile)
 print("file-nr stddev: %.2f" % filenr_stddev)
+
+# 2
+# (a)
+# The number of observations with CPU utilization (“all %%usr”) smaller than 
+# 90% and memory utilization (“%%memused”) smaller than 50%;
+
+# I should have used query() but because the column name has %%, it ruins the query()
+cpu_less_than_90 = data[data['all_%%usr'] < 90]['all_%%usr'].count()
+print("the number of observations with CPU < 90%%: %d" % cpu_less_than_90)
+
+mem_less_than_50 = data[data['%%memused'] < 50]['%%memused'].count()
+print("the number of observations with memory usage < 50%%: %d" % mem_less_than_50)
+
+# (b)
+# The average number of used sockets (“totsck”) for observations with less than 
+# 60 000 context switches per seconds (“cswch/s”)
+nums_socks = data[data['cswch/s'] < 60000]["totsck"].mean()
+print("average sockets used for cswch < 60000: %.2f" % nums_socks)
