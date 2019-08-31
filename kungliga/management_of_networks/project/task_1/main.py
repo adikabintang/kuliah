@@ -160,16 +160,16 @@ print("average sockets used for cswch < 60000: %.2f" % nums_socks)
 # Time series of memory usage (“%%memused”) and CPU utilization (“all %%usr”),
 # both curves in a single plot. Box plot of both features in a single plot.
 
-# plt.plot(data["TimeStamp"], data["%%memused"], label='%%memused')
-# plt.plot(data["TimeStamp"], data["all_%%usr"], label='all_%%usr')
-# plt.legend()
-# plt.show()
+plt.subplot(2, 1, 1)
+plt.plot(data["TimeStamp"], data["%%memused"], label='%%memused')
+plt.plot(data["TimeStamp"], data["all_%%usr"], label='all_%%usr')
+plt.legend()
 
 # (b)
 # Density plots of memory usage (“%%memused”) and CPU utilization (“all %%usr”), 
 # Histograms of both these features (choose a bin size of 1%), four plots in all.
 
-
+plt.subplot(2, 1, 2)
 memused_bins = range(int(memused_min), int(math.ceil(memused_max)))
 all_usr_bins = range(int(all_user_min), int(math.ceil(all_user_max)))
 
@@ -190,4 +190,5 @@ density_all_usr = ((1 / (np.sqrt(2 * np.pi) * all_user_stddev)) *
 plt.plot(memused_bins, density_memused, '--')
 plt.plot(all_usr_bins, density_all_usr, '--')
 
+plt.legend()
 plt.show()
