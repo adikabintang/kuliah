@@ -1,6 +1,9 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import math
 
-data = pd.read_csv("X.csv", delimiter = ',')
+data = pd.read_csv("X.csv", delimiter=',')
 
 # 1
 runq_sz_mean = data["runq-sz"].mean()
@@ -135,7 +138,7 @@ print("file-nr stddev: %.2f" % filenr_stddev)
 
 # 2
 # (a)
-# The number of observations with CPU utilization (“all %%usr”) smaller than 
+# The number of observations with CPU utilization (“all %%usr”) smaller than
 # 90% and memory utilization (“%%memused”) smaller than 50%;
 
 # I should have used query() but because the column name has %%, it ruins the query()
@@ -143,10 +146,48 @@ cpu_less_than_90 = data[data['all_%%usr'] < 90]['all_%%usr'].count()
 print("the number of observations with CPU < 90%%: %d" % cpu_less_than_90)
 
 mem_less_than_50 = data[data['%%memused'] < 50]['%%memused'].count()
-print("the number of observations with memory usage < 50%%: %d" % mem_less_than_50)
+print("the number of observations with memory usage < 50%%: %d"
+      % mem_less_than_50)
 
 # (b)
-# The average number of used sockets (“totsck”) for observations with less than 
+# The average number of used sockets (“totsck”) for observations with less than
 # 60 000 context switches per seconds (“cswch/s”)
 nums_socks = data[data['cswch/s'] < 60000]["totsck"].mean()
 print("average sockets used for cswch < 60000: %.2f" % nums_socks)
+
+# 3
+# (a)
+# Time series of memory usage (“%%memused”) and CPU utilization (“all %%usr”),
+# both curves in a single plot. Box plot of both features in a single plot.
+
+# plt.plot(data["TimeStamp"], data["%%memused"], label='%%memused')
+# plt.plot(data["TimeStamp"], data["all_%%usr"], label='all_%%usr')
+# plt.legend()
+# plt.show()
+
+# (b)
+# Density plots of memory usage (“%%memused”) and CPU utilization (“all %%usr”), 
+# Histograms of both these features (choose a bin size of 1%), four plots in all.
+
+
+memused_bins = range(int(memused_min), int(math.ceil(memused_max)))
+all_usr_bins = range(int(all_user_min), int(math.ceil(all_user_max)))
+
+plt.hist(data["%%memused"], color='g', label='%%memused', bins=memused_bins,
+         density=True, stacked=True)
+
+plt.hist(data["all_%%usr"], color='b', label='all_%%usr', bins=all_usr_bins,
+         density=True, stacked=True)
+
+density_memused = ((1 / (np.sqrt(2 * np.pi) * memused_stddev)) *
+                   np.exp(-0.5 * (1 / memused_stddev * 
+                   (memused_bins - memused_mean))**2))
+
+density_all_usr = ((1 / (np.sqrt(2 * np.pi) * all_user_stddev)) *
+                   np.exp(-0.5 * (1 / all_user_stddev * 
+                   (all_usr_bins - all_user_mean))**2))
+
+plt.plot(memused_bins, density_memused, '--')
+plt.plot(all_usr_bins, density_all_usr, '--')
+
+plt.show()
