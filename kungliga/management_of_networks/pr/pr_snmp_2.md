@@ -1,3 +1,7 @@
+- Name: Adika Bintang Sulaeman
+- Student ID: 19940715­-3239
+---
+
 ## 1. A function that reads an SNMP table column by column, **one column at the time** (use get-bulk, i.e., the SNMPv2 operation GetBulkRequest)
 
 ```C
@@ -109,7 +113,7 @@ read_table (table_oid, table, &row_max, &column_max) {
 
 This function performs `snmp get-next` to read the element of the table one by one. It cannot read multiple `get-next` at the same time because other `get-next` is dependent of the OID returned from the previous `get-next`.
 
-If the table has `m` columns and `n` rows, the number of operation will be `m*n`, which has the complexity of `O(m*n)`. This complexity function also applies to the number of round-trips done with the `snmp geget-nextt`.
+If the table has `m` columns and `n` rows, the number of operation will be `m*n`, which has the complexity of `O(m*n)`. This complexity function also applies to the number of round-trips done with the `snmp get-next`.
 
 Since the document states that we can assume that the SNMP response fits into a single PDU, the size of the response would be `m*n` too. For each response, the message size will be as small as a single message of reading the element of the SNMP table.
 
