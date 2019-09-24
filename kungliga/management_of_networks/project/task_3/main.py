@@ -59,6 +59,9 @@ print(y_test_merged.head(7))
 # FP: bilang ya, padahal ngga
 # FN: bilang ngga, padahal ya
 
+# compute the confusion matrix, which includes the four numbers 
+# True Positives (TP), True Negatives (TN), False Positives (FN), 
+# and False Negatives (FN)
 arr = []
 y_true = []
 TP = 0
