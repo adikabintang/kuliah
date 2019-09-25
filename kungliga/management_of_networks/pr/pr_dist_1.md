@@ -1,7 +1,5 @@
 ## 1. Extend the echo algorithm presented in class to an algorithm that executes on a connected network graph G and returns at the root node the number of nodes of the network graph, the number of edges of the network graph, and the number of edges of the echo-created spanning tree.
 
-### For counting the number of nodes only (TODO for the other objects)
-
 First, let us assume that the function `recv()` in the pseudocode returns a tuple of `(msg_type, node_counter, graph_edge_counter)`.
 
 If the `message_type` is `ECHO`, the `node_counter` and `graph_edge_counter` are integers. Otherwise, they are `NULL`.
@@ -35,7 +33,7 @@ return (node_count, graph_edge_count, spanning_tree_edges)
 #### Non-root (node v)
 
 ```
-(message_type, value) = recv()
+(msg_type, node_counter, graph_edge_counter) = recv()
 if (message_type == EXP) {
     node_counter := 1
     parent := n
@@ -53,6 +51,7 @@ if (message_type == EXP) {
                 graph_edge_counter
         }
     }
+    
     send(ECHO, node_counter, neighbor_counter, v) to parent
 }
 ```
