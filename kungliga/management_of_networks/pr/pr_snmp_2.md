@@ -1,5 +1,4 @@
 - Name: Adika Bintang Sulaeman
-- Student ID: 19940715­-3239
 ---
 
 ## 1. A function that reads an SNMP table column by column, **one column at the time** (use get-bulk, i.e., the SNMPv2 operation GetBulkRequest)
