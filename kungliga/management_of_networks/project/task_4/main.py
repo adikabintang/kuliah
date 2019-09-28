@@ -35,29 +35,37 @@ Y.index = pd.to_datetime(
 feature_names = ["runq-sz", "%%memused", "proc/s", "cswch/s", "all_%%usr", 
     "ldavg-1", "totsck", "pgfree/s", 
     "plist-sz", "file-nr", "idel/s", "tps"]
-all_subset = subs(feature_names)
 
-# all_subset = subs(["runq-sz", "%%memused"])
+# all_subset = subs(feature_names)
+all_subset = subs(["runq-sz", "%%memused", "proc/s", "cswch/s"])
 
-# all_nmae = []
-# nmaes_boxplot_data = []
-# for subset in all_subset:
-#     x_train, x_test, y_train, y_test = train_test_split(X[subset], 
-#         Y[["DispFrames"]], train_size=0.7)
-#     regression_model = LinearRegression()
-#     regression_model.fit(x_train, y_train)
-#     y_predict = regression_model.predict(x_test)
-#     nmae = get_nmae(y_predict, y_test)
-#     all_nmae.append(nmae)
+all_nmae = []
+nmaes_boxplot_data = []
+min_nmaes_each_feature = []
+for subset in all_subset:
+    x_train, x_test, y_train, y_test = train_test_split(X[subset], 
+        Y[["DispFrames"]], train_size=0.7)
+    regression_model = LinearRegression()
+    regression_model.fit(x_train, y_train)
+    y_predict = regression_model.predict(x_test)
+    nmae = get_nmae(y_predict, y_test)
+    all_nmae.append(nmae)
     
-#     if len(nmaes_boxplot_data) < len(subset):
-#         nmaes_boxplot_data.append([nmae])
-#     else:
-#         nmaes_boxplot_data[len(subset) - 1].append(nmae)
+    if len(nmaes_boxplot_data) < len(subset):
+        nmaes_boxplot_data.append([nmae])
+    else:
+        nmaes_boxplot_data[len(subset) - 1].append(nmae)
 
-# min_nmae = min(all_nmae)
-# print("the smallest name is the model with features:")
-# print(all_subset[all_nmae.index(min_nmae)])
+    # for instruction number 5
+    if len(min_nmaes_each_feature) < len(subset):
+        min_nmaes_each_feature.append(nmae)
+    else:
+        if nmae < min_nmaes_each_feature[len(subset) - 1]:
+            min_nmaes_each_feature[len(subset) - 1] = nmae
+
+min_nmae = min(all_nmae)
+print("the smallest name is the model with features:")
+print(all_subset[all_nmae.index(min_nmae)])
 
 # binwidth = 0.01
 # print(all_nmae)
@@ -109,22 +117,30 @@ for i in range(1, len(sorted_feature) + 1):
     nmae = get_nmae(y_predict, y_test)
     all_nmaes.append(nmae)
 
-plt.plot(range(1, 13), all_nmaes)
-plt.show()
+# plt.plot(range(1, 13), all_nmaes)
+# plt.show()
 
 # (4)
 
-sorted_correlation = sorted(correlation_map.items(), key=lambda kv: kv[1],
-    reverse=True)
-sorted_feature = [feature[0] for feature in sorted_correlation]
-sorted_correlation = [[val[1]] for val in sorted_correlation]
-plt.matshow(sorted_correlation, cmap='RdPu')
-plt.colorbar()
+# sorted_correlation = sorted(correlation_map.items(), key=lambda kv: kv[1],
+#     reverse=True)
+# sorted_feature = [feature[0] for feature in sorted_correlation]
+# sorted_correlation = [[val[1]] for val in sorted_correlation]
+# plt.matshow(sorted_correlation, cmap='RdPu')
+# plt.colorbar()
 
-y_pos = np.arange(len(sorted_correlation))
-plt.yticks(y_pos, sorted_feature)
+# y_pos = np.arange(len(sorted_correlation))
+# plt.yticks(y_pos, sorted_feature)
 
-x_pos = [1]
-plt.xticks(x_pos, ["DispFrames"])
+# x_pos = [1]
+# plt.xticks(x_pos, ["DispFrames"])
 
+# plt.show()
+
+# (5)
+
+plt.plot(range(1, len(min_nmaes_each_feature) + 1), min_nmaes_each_feature, label='Optimal Method')
+plt.plot(range(1, len(min_nmaes_each_feature) + 1), 
+    all_nmaes[0:len(min_nmaes_each_feature)], label='Heuristic Method')
+plt.legend()
 plt.show()
