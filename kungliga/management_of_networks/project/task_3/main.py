@@ -4,7 +4,6 @@ from sklearn.linear_model import LogisticRegression
 import matplotlib.pyplot as plt
 import numpy as np
 
-# minimum dispframes: 18
 
 X = pd.read_csv('data/X.csv')
 Y = pd.read_csv('data/Y.csv')
