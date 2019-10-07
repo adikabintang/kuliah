@@ -3,15 +3,15 @@
 ## Optimal Method
 
 ```
-the smallest NMAE (0.09635857) is the model with features:
-['runq-sz', '%%memused', 'cswch/s', 'all_%%usr', 'ldavg-1', 'totsck', 'pgfree/s', 'plist-sz']
+the smallest NMAE (0.09685993) is the model with features:
+['runq-sz', '%%memused', 'cswch/s', 'all_%%usr', 'ldavg-1', 'pgfree/s', 'plist-sz', 'file-nr', 'tps']
 ```
 
 ![historgram_nmae_opt.png](historgram_nmae_opt.png "aaaaaaa")
 
 ![boxplot_nmae_opt.png](boxplot_nmae_opt.png)
 
-The method which is used to find the features with the smallest error is building a subset of each features, building the linear regression model, then finding the smallest NMAE of all the models built. The features with the smallest error are 'runq-sz', '%%memused', 'cswch/s', 'all_%%usr', 'ldavg-1', 'totsck', 'pgfree/s', 'plist-sz'.
+The method which is used to find the features with the smallest error is building a subset of each features, building the linear regression model, then finding the smallest NMAE of all the models built. The features with the smallest error are 'runq-sz', '%%memused', 'cswch/s', 'all_%%usr', 'ldavg-1', 'pgfree/s', 'plist-sz', 'file-nr', 'tps'.
 
 From the histogram, we can see the the highest number of error (NMAE) is around 0.1 with more than 3000 data. This means that the models mostly have 0.1 error with various features applied to the model.
 
@@ -23,18 +23,18 @@ We can also see that the variance of the error is very high if only one feature 
 
 ```
 Rank of the features according to the square of the correlation values:
-plist-sz: 0.6413128161281124
-totsck: 0.6388638096258311
-runq-sz: 0.6309219006257749
-ldavg-1: 0.6185186517680741
-cswch/s: 0.5405092763651523
-file-nr: 0.5257770546441308
-all_%%usr: 0.31833031026440894
-%%memused: 0.11557994822536326
-idel/s: 0.07013027198662457
-proc/s: 0.0339072892838778
-pgfree/s: 0.0008289653042888825
-tps: 0.00025865599225943954
+plist-sz: 0.6376769572704232
+totsck: 0.6348541962392853
+runq-sz: 0.6277663322832961
+ldavg-1: 0.6168571417878531
+cswch/s: 0.5307997934869442
+file-nr: 0.5221921171327957
+all_%%usr: 0.3093290304770762
+%%memused: 0.11959251450970435
+idel/s: 0.08221690076956048
+proc/s: 0.03640409968203089
+pgfree/s: 0.00017554917649260075
+tps: 5.284353085283944e-05
 ```
 
 ![error_heuristic.png](error_heuristic.png)
@@ -43,7 +43,7 @@ The correlation values calculated is within the range [-1, +1]. The rank of the 
 
 The abosulte correlation value indicates the strength of the relation ship, while the sign of the value shows the direction of the relationship [1].
 
-The heuristic method also shows how many features we need to build such a reliable model in a heuristic way. If the number of features included in a model is less then 6, the NMAE is relatively high. If the number of features is more than 6, the NMAE is steeply reduced. We can say that 8 features is the good number of features to build a model, whereas if we give more than 8, it will not significantly improve the model. The method shows that we need 8 features at least, which are plist-sz, totsck, runq-sz, ldavg-1, cswch/s, file-nr, all_%%usr, and %%memused to build a reliable model.
+The heuristic method also shows how many features we need to build such a reliable model in a heuristic way. If the number of features included in a model is less then 6, the NMAE is relatively high. If the number of features is more than 6, the NMAE is steeply reduced. We can say that 8 features is the good number of features to build a model, whereas if we give more than 8, it will not significantly improve the model. The method shows that we need 8 features at least to build a reliable model.
 
 ## Correlation matrix showing the correlation between variable
 
