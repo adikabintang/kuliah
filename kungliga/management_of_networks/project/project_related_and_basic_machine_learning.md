@@ -39,8 +39,8 @@ In a nutshell:
 - Unsupervised learning: there is no label/result on the training data.
 
 In other words:
-- Supervised learning: $\{(X_t, Y_t)\} \longrightarrow M : X \rightarrow \hat y$
-- Unsupervised learning: $\{X_t\} \longrightarrow M_\theta(X)$
+- Supervised learning: \\( \{(X_t, Y_t)\} \longrightarrow M : X \rightarrow \hat y \\)
+- Unsupervised learning: \\( \{X_t\} \longrightarrow M_\theta(X) \\)
 
 ## Building a model with validation-set approach
 
@@ -65,9 +65,9 @@ X_train, X_test, y_train, y_test = train_test_split(x,
 
 $$MSE = {1 \over m}\sum_{i=1}^m || y^{(i)} - M(x^{(i)}) || ^ 2$$
 
-$m$ = number of observations.
+\\(m\\) = number of observations.
 
-This is also called **cost function** $J(\theta_0, \theta_1, ..., \theta_n)$.
+This is also called **cost function** \\( J(\theta_0, \theta_1, ..., \theta_n) \\).
 
 # Part 2: Linear Regression
 
@@ -80,26 +80,26 @@ The terms we are going to use:
 - `y` is the result of the model computation.
 
 For example, in a dataset from a web server observation, we can have:
-- $x_1$: CPU percentage at a particular time
-- $x_2$: memory usage at a particular time
-- $x_3$: [iowait](https://serverfault.com/questions/12679/can-anyone-explain-precisely-what-iowait-is) at a particular time
-- $y$: web server response time in millisecond
+- \\( x_1 \\): CPU percentage at a particular time
+- \\( x_2 \\): memory usage at a particular time
+- \\( x_3 \\): [iowait](https://serverfault.com/questions/12679/can-anyone-explain-precisely-what-iowait-is) at a particular time
+- \\( y \\): web server response time in millisecond
 
-By the way, the $x$ in the above example can be obtained from `sar` command in Linux.
+By the way, the \\( x \\) in the above example can be obtained from `sar` command in Linux.
 
-In a nutshell, based on the data in the training set, we want to build a linear equation so that we can calculate/predict the new value of $y$ given only $x$.
+In a nutshell, based on the data in the training set, we want to build a linear equation so that we can calculate/predict the new value of \\( y \\) given only \\( x \\).
 
 So, in our example, the linear regression model is:
 
 $$ \hat y = M_\theta = \theta_0 x_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_3 = \theta^\mathsf{T}x$$
 
-$x_0$ is 1, $\theta_0$ is called offset (offset -> the $y$ value when $x=0$). The $\theta^\mathsf{T}x$ is a matrix multiplication of $\theta^\mathsf{T}$ (transponse of matrix $\theta$, a 3x1 column matrix) with matrix $x$ (a 1x3 column matrix).
+\\( x_0 \\) is 1, \\( \theta_0 \\) is called offset (offset -> the \\( y \\) value when \\( x=0 \\)). The \\( \theta^\mathsf{T}x \\) is a matrix multiplication of \\( \theta^\mathsf{T} \\) (transponse of matrix \\( \theta \\), a 3x1 column matrix) with matrix \\( x \\) (a 1x3 column matrix).
 
-Least square regression tries to find model coefficients $\theta_0, \theta_1, ..., \theta_n$ so that the MSE is as small as possible.
+Least square regression tries to find model coefficients \\( \theta_0, \theta_1, ..., \theta_n \\) so that the MSE is as small as possible.
 
-To minimize the error when choosing coefficients $\theta$, the steps are [[Andrew Ng](https://www.youtube.com/watch?v=F6GSRDoB-Cg&list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN&index=8)]:
-- Start with some $\theta_0, \theta_1, ..., \theta_n$ (usually they are initially set with 0)
-- Keep changing the coefficient $\theta$ to reduce the cost function $J(\theta)$ until _hopefully_ end up at a minimum. This is done with _gradient descent algorihtm_.
+To minimize the error when choosing coefficients \\( \theta \\), the steps are [[Andrew Ng](https://www.youtube.com/watch?v=F6GSRDoB-Cg&list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN&index=8)]:
+- Start with some \\( \theta_0, \theta_1, ..., \theta_n \\) (usually they are initially set with 0)
+- Keep changing the coefficient \\( \theta \\) to reduce the cost function \\( J(\theta) \\) until _hopefully_ end up at a minimum. This is done with _gradient descent algorihtm_.
 
 Gradient descent algorithm:
 
@@ -108,7 +108,7 @@ $$ repeat\ until\ convergence\ \{
     \}\ for (j = 0\ to\ j = n) 
     $$
 
-With $\alpha$ is the learning rate and ${\partial \over \partial \theta_j} J(\theta_0, \theta_1, ..., \theta_n)$ is the derivative term.
+With \\( \alpha \\) is the learning rate and \\( {\partial \over \partial \theta_j} J(\theta_0, \theta_1, ..., \theta_n) \\) is the derivative term.
 
 ### How to build a linear regression in Python using Scikit-Learn
 
@@ -146,11 +146,11 @@ Whereby
 
 $$\sigma(z) = {1 \over {1 + e ^ {-z}}}$$
 
-Notice that $\theta ^ \mathsf{T}x$ is the same as that in the linear regression.
+Notice that \\( \theta ^ \mathsf{T}x \\) is the same as that in the linear regression.
 
-$\sigma(z) : \real \rightarrow (0, 1)$ is the [sigmoid/logistic function](https://en.wikipedia.org/wiki/Sigmoid_function).
+\\( \sigma(z) : \real \rightarrow (0, 1) \\) is the [sigmoid/logistic function](https://en.wikipedia.org/wiki/Sigmoid_function).
 
-The interpretation of $M_\theta(x)$ is the **estimated probability that $y=1$ on input x** [[Andrew Ng](https://youtu.be/t1IT5hZfS48?list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN&t=200)].
+The interpretation of \\( M_\theta(x) \\) is the **estimated probability that \\( y=1 \\) on input x** [[Andrew Ng](https://youtu.be/t1IT5hZfS48?list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN&t=200)].
 
 ### Logistic regression in Python using Scikit-Learn
 
@@ -189,25 +189,76 @@ See [[developers.google.com](https://developers.google.com/machine-learning/cras
 
 ## The relationship between the estimation error and training size
 
-...
+![boxplot_error.png](boxplot_error.png)
+
+The above graph shows the relationship between the number of observations in the training set vs the error produced by the model built. Important things to see:
+- The average of the error decreases exponentially with the number of features in the training sets, and it eventually converges. It means that the larger the training set we have, the better, until it converges and adding more features will not give significant improvement.
+- The variance of the error also decreases as the training set size grows.
 
 # Part 4: Reducing the features (X values)
 
+What if the number of features (\\( x \\)) is so large that it will take so long to compute, send the raw data, and hard to save on the drive?
+
+We might want to exclude some features in the training and test size. One of the ways to do it is ask the expert of the field which features really matter. For example, in the dataset from the web server operation, we can ask the infrastructure guys which metrics that can affect the performance of the server. However, if the data is too large and no one knows for sure which features matter, we can reduce the features using the following techniques.
+
 ## Optimal Method: Build all subsets of the feature set X
 
-...
+From the `n` number of fetures, build models from the subset of all features, then choose the features which yields the smallest error. This exhaustive search has the complexity of \\( O(2^n) \\).
+
+```python
+import itertools
+
+def subs(l):
+    res = []
+    for i in range(1, len(l) + 1):
+        for combo in itertools.combinations(l, i):
+            res.append(list(combo))
+
+feature_names = [
+    "cpu_percentage", 
+    "memory_usage", 
+    "iowait"
+    ]
+
+all_subset = subs(feature_names)
+```
 
 ## Heuristic Method: Linear univariate feature selection
 
-...
+Basic idea: choosing the features based on the correlation values of the feature. The correlation value falls into the interval \\( [-1, +1] \\)
 
-### Correlation Matrix
+```python
+# "target" is the feature of the result y
+corr_values = my_data.corr()["target"]
+print(corr_values)
 
-...
+abs_corr_values = abs(corr_values)
+print(abs_corr_values)
+```
+
+How to read the correlation values [[statisticsbyjim](https://statisticsbyjim.com/basics/correlations/)]:
+- The absolute correlation value determines the strenth; the closer the absolute value to 1, the stronger it is to the \\( y \\)
+- The sign (negative or positive) represents the direction of the relationship.
 
 ## Principle Component Analysis (PCA)
 
-...
+PCA explanation: [[georgemdallas](https://georgemdallas.wordpress.com/2013/10/30/principal-component-analysis-4-dummies-eigenvectors-eigenvalues-and-dimension-reduction/#targetText=First%20of%20all%20Principal%20Component,on%20a%20normal%20x%2Dy%20axis.)]
+
+How to use this in Python: [[towardsdatascience](https://towardsdatascience.com/pca-using-python-scikit-learn-e653f8989e60#targetText=It%20means%20that%20scikit%2Dlearn,of%20the%20variance%20is%20retained.&targetText=Fit%20PCA%20on%20training%20set.)]
+
+
+---
+
+"PCA is a technique used to emphasize variation and bring out strong pattern in a dataset" - [setosa.io](http://setosa.io/ev/principal-component-analysis/)
+
+Steps:
+
+- Normalization/standardization
+
+When we have features with different unit of data (for example, cm for height and kg for weight in a human-something dataset), one data change can lead to be wrongly considered as more important than the other. Normalizing with z-score can help re-scalind the data. [[scikit-learn](https://scikit-learn.org/stable/auto_examples/preprocessing/plot_scaling_importance.html#sphx-glr-auto-examples-preprocessing-plot-scaling-importance-py)] [[codeacademy](https://www.codecademy.com/articles/normalization#targetText=Using%20z%2Dscore%20normalization%2C%20the,from%20about%20%2D2%20to%202.)]
+
+- Find eigenvector and eigenvalue to find the principal components (and the variance is in the variable `pca.explained_variance_ratio_`)
+- Reduce the dimensions (for example, if the variance of the component A is `n%` and B is `m%`, `m+n` is the sum of the variance and we can pick the number of components absed on the desired variance value).
 
 ## When to use the optimal, heuristic, or PCA?
 
