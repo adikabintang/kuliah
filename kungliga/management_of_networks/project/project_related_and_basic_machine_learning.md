@@ -240,7 +240,7 @@ How to read the correlation values [[statisticsbyjim](https://statisticsbyjim.co
 - The absolute correlation value determines the strenth; the closer the absolute value to 1, the stronger it is to the \\( y \\)
 - The sign (negative or positive) represents the direction of the relationship.
 
-## Principle Component Analysis (PCA)
+## Principal Component Analysis (PCA)
 
 PCA explanation: [[georgemdallas](https://georgemdallas.wordpress.com/2013/10/30/principal-component-analysis-4-dummies-eigenvectors-eigenvalues-and-dimension-reduction/#targetText=First%20of%20all%20Principal%20Component,on%20a%20normal%20x%2Dy%20axis.)]
 
